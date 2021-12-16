@@ -1,0 +1,26 @@
+.page {
+  box-sizing: border-box;
+  max-width: 1280px;
+  min-width: 282px;
+  font-family: 'Inter', 'Arial', sans-serif;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  margin: 0 auto;
+  background: #000;
+  color: #fff;
+}
+
+@media screen and (max-width: 700px) {
+  /* стили для мобильного */
+.page {
+  padding: 0 19px 0;
+}
+}
+
+@media screen and (max-width: 580px) {
+  /* стили для мобильного */
+.page {
+  padding: 0;
+}
+}

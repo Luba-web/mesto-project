@@ -1,0 +1,7 @@
+.logo_theme_white {
+  max-width: 100%;
+  background-image: url(../../../images/logo__white.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  object-fit: cover;
+}

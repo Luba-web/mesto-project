@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./pages/index.css" />
+    <title>Место</title>
+  </head>
+  <body class="page">
+    <form
+      action="#"
+      method="POST"
+      class="popup popup_opened"
+      name="Редактирование профиля"
+    >
+      <fieldset class="popup__container">
+        <button class="button button__close"></button>
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <input
+          type="text"
+          name="firstname"
+          value="Жак-Ив Кусто"
+          required
+          class="popup__firstname"
+        />
+        <input
+          type="text"
+          name="info"
+          value="Исследователь океана"
+          required
+          class="popup__info"
+        />
+        <button class="button button__save">Сохранить</button>
+      </fieldset>
+    </form>
+    <header class="header header__border">
+      <div class="logo logo_theme_white"></div>
+    </header>
+    <main>
+      <section class="profile">
+        <div class="profile__avatar"></div>
+        <div class="profile__info">
+          <h1 class="profile__title">
+            Жак-Ив Кусто <button class="button button__pen"></button>
+          </h1>
+          <p class="profile__subtitle">Исследователь океана</p>
+        </div>
+        <button class="button button__add"></button>
+      </section>
+      <section>
+        <ul class="card">
+          <li class="card__item">
+            <img src="./images/1.jpg" alt="Енот Мася" class="card__images" />
+            <h2 class="card__text">
+              Мася<button class="button button__heart"></button>
+            </h2>
+          </li>
+          <li class="card__item">
+            <img src="./images/2.jpg" alt="Енот Суся" class="card__images" />
+            <h2 class="card__text">
+              Суся<button class="button button__heart"></button>
+            </h2>
+          </li>
+          <li class="card__item">
+            <img src="./images/3.jpg" alt="Енот Вася" class="card__images" />
+            <h2 class="card__text">
+              Вася<button class="button button__heart"></button>
+            </h2>
+          </li>
+          <li class="card__item">
+            <img src="./images/4.jpg" alt="Енот Ляся" class="card__images" />
+            <h2 class="card__text">
+              Ляся<button class="button button__heart"></button>
+            </h2>
+          </li>
+          <li class="card__item">
+            <img src="./images/5.jpg" alt="Енот Ося" class="card__images" />
+            <h2 class="card__text">
+              Ося<button class="button button__heart"></button>
+            </h2>
+          </li>
+          <li class="card__item">
+            <img
+              src="./images/6.jpg"
+              alt="Енот Мистер Бося Старший"
+              class="card__images"
+            />
+            <h2 class="card__text">
+              Мистер Бося Старший<button class="button button__heart"></button>
+            </h2>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <footer class="footer">
+      <h2 class="footer__autor">&copy; 2021. Любовь Васильева</h2>
+    </footer>
+  </body>
+</html>

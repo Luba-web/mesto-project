@@ -1,0 +1,16 @@
+.popup_opened {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  max-width: 1280px;
+  min-width: 282px;
+  z-index: 1;
+  padding-top: 194px;
+}
+
+@media screen and (max-width: 580px) {
+  /* стили для мобильного */
+.popup_opened {
+  padding-top: 123px;
+}
+}

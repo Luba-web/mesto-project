@@ -1,0 +1,14 @@
+.header {
+  max-width: 880px;
+  margin: 0 auto;
+  min-height: 74px;
+  padding-top: 45px;
+}
+
+@media screen and (max-width: 580px) {
+  /* стили для мобильного */
+  .header {
+    min-height: 56px;
+    padding: 28px 19px 0;
+  }
+}
