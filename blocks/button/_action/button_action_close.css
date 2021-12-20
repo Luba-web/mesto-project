@@ -1,0 +1,26 @@
+.button_action_close {
+  width: 32px;
+  height: 32px;
+  background-image: url(../../../images/close.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  box-sizing: border-box;
+  padding: 0;
+  position: absolute;
+  right: -10%;
+  top: -12%;
+  background-color: transparent;
+  border: none;
+  transition: 0.3s;
+}
+
+@media screen and (max-width: 580px) {
+  /* стили для мобильного */
+  .button_action_close {
+    width: 20px;
+    height: 20px;
+    right: 0;
+    top: -10%;
+  }
+}

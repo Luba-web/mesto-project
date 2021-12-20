@@ -8,93 +8,103 @@
     <title>Место</title>
   </head>
   <body class="page">
-    <form
-      action="#"
-      method="POST"
-      class="popup popup_opened"
-      name="Редактирование профиля"
-    >
-      <fieldset class="popup__container">
-        <button class="button button__close"></button>
+    <div class="popup popup_opened">
+      <div class="popup__container">
+        <button
+          type="button"
+          aria-label="закрыть всплывающее окно"
+          class="button button_action_close"
+        ></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <input
-          type="text"
-          name="firstname"
-          value="Жак-Ив Кусто"
-          required
-          class="popup__firstname"
-        />
-        <input
-          type="text"
-          name="info"
-          value="Исследователь океана"
-          required
-          class="popup__info"
-        />
-        <button class="button button__save">Сохранить</button>
-      </fieldset>
-    </form>
-    <header class="header header__border">
+        <form name="editing" class="form__input-group">
+          <div class="form__first-name">
+            <input
+              type="text"
+              name="first-name"
+              placeholder="Жак-Ив Кусто"
+              class="form__lang-link"
+            />
+          </div>
+          <div class="form__profession">
+            <input
+              type="text"
+              name="profession"
+              placeholder="Исследователь океана"
+              class="form__lang-link"
+            />
+          </div>
+          <button type="submit" class="button button_action_save">
+            Сохранить
+          </button>
+        </form>
+      </div>
+    </div>
+    <header class="header header_border">
       <div class="logo logo_theme_white"></div>
     </header>
     <main>
       <section class="profile">
         <div class="profile__avatar"></div>
         <div class="profile__info">
-          <h1 class="profile__title">
-            Жак-Ив Кусто <button class="button button__pen"></button>
-          </h1>
+          <h1 class="profile__title">Жак-Ив Кусто</h1>
           <p class="profile__subtitle">Исследователь океана</p>
+          <button type="submit" class="button button_action_pen"></button>
         </div>
-        <button class="button button__add"></button>
+        <button type="submit" class="button button_action_add"></button>
       </section>
       <section>
         <ul class="card">
           <li class="card__item">
-            <img src="./images/1.jpg" alt="Енот Мася" class="card__images" />
-            <h2 class="card__text">
-              Мася<button class="button button__heart"></button>
-            </h2>
+            <img src="./images/1.jpg" alt="енот мася" class="card__images" />
+            <div class="card__info">
+              <h2 class="card__text">Мася</h2>
+              <button type="submit" class="button button_action_heart"></button>
+            </div>
           </li>
           <li class="card__item">
-            <img src="./images/2.jpg" alt="Енот Суся" class="card__images" />
-            <h2 class="card__text">
-              Суся<button class="button button__heart"></button>
-            </h2>
+            <img src="./images/2.jpg" alt="енот суся" class="card__images" />
+            <div class="card__info">
+              <h2 class="card__text">Суся</h2>
+              <button type="submit" class="button button_action_heart"></button>
+            </div>
           </li>
           <li class="card__item">
-            <img src="./images/3.jpg" alt="Енот Вася" class="card__images" />
-            <h2 class="card__text">
-              Вася<button class="button button__heart"></button>
-            </h2>
+            <img src="./images/3.jpg" alt="енот вася" class="card__images" />
+            <div class="card__info">
+              <h2 class="card__text">Вася</h2>
+              <button type="submit" class="button button_action_heart"></button>
+            </div>
           </li>
           <li class="card__item">
-            <img src="./images/4.jpg" alt="Енот Ляся" class="card__images" />
-            <h2 class="card__text">
-              Ляся<button class="button button__heart"></button>
-            </h2>
+            <img src="./images/4.jpg" alt="енот ляся" class="card__images" />
+            <div class="card__info">
+              <h2 class="card__text">Ляся</h2>
+              <button type="submit" class="button button_action_heart"></button>
+            </div>
           </li>
           <li class="card__item">
-            <img src="./images/5.jpg" alt="Енот Ося" class="card__images" />
-            <h2 class="card__text">
-              Ося<button class="button button__heart"></button>
-            </h2>
+            <img src="./images/5.jpg" alt="енот ося" class="card__images" />
+            <div class="card__info">
+              <h2 class="card__text">Ося</h2>
+              <button type="submit" class="button button_action_heart"></button>
+            </div>
           </li>
           <li class="card__item">
             <img
               src="./images/6.jpg"
-              alt="Енот Мистер Бося Старший"
+              alt="енот мистер бося старший"
               class="card__images"
             />
-            <h2 class="card__text">
-              Мистер Бося Старший<button class="button button__heart"></button>
-            </h2>
+            <div class="card__info">
+              <h2 class="card__text">Мистер Бося Старший</h2>
+              <button type="submit" class="button button_action_heart"></button>
+            </div>
           </li>
         </ul>
       </section>
     </main>
     <footer class="footer">
-      <h2 class="footer__autor">&copy; 2021. Любовь Васильева</h2>
+      <p class="footer__autor">&copy; 2021. Любовь Васильева</p>
     </footer>
   </body>
 </html>

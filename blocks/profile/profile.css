@@ -4,14 +4,13 @@
   padding-top: 40px;
   display: grid;
   grid-template-columns: 120px 1fr 1fr;
-
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 750px) {
   /* стили для мобильного */
-.profile {
-  grid-template-columns: none;
-  justify-items: center;
-  padding: 42px 19px 0;
-}
+  .profile {
+    grid-template-columns: none;
+    justify-items: center;
+    padding: 42px 19px 0;
+  }
 }

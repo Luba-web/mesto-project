@@ -13,7 +13,7 @@
 
 @media screen and (max-width: 580px) {
   /* стили для мобильного */
-.card {
-  padding: 36px 19px 0;
-}
+  .card {
+    padding: 36px 19px 0;
+  }
 }

@@ -1,0 +1,28 @@
+.button_action_save {
+  width: 100%;
+  font-size: 18px;
+  line-height: 22px;
+  height: 50px;
+  box-sizing: border-box;
+  color: #fff;
+  margin-top: 48px;
+  background: #000000;
+  border-radius: 2px;
+  padding: 0;
+  border: none;
+  transition: 0.3s;
+}
+
+.button_action_save:hover {
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 580px) {
+  /* стили для мобильного */
+  .button_action_save {
+    font-size: 14px;
+    line-height: 17px;
+    height: 46px;
+    margin-top: 45px;
+  }
+}

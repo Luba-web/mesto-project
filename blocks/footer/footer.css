@@ -7,7 +7,7 @@
 
 @media screen and (max-width: 700px) {
   /* стили для мобильного */
-.footer {
-  padding: 48px 19px 36px;
-}
+  .footer {
+    padding: 48px 19px 36px;
+  }
 }

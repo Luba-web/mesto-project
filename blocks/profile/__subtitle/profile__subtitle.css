@@ -2,17 +2,19 @@
   margin-block: 0;
   font-size: 18px;
   line-height: 22px;
-  margin-top: 16px;
+  margin-top: 10px;
+  max-width: 294px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 750px) {
   /* стили для мобильного */
-.profile__subtitle {
-  font-size: 14px;
-  line-height: 17px;
-  text-align: center;
-}
+  .profile__subtitle {
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    margin-top: 12px;
+  }
 }

@@ -2,5 +2,12 @@
   margin-block: 0;
   font-size: 18px;
   line-height: 22px;
-  font-weight: 400;
+}
+
+@media screen and (max-width: 700px) {
+  /* стили для мобильного */
+  .footer__autor {
+    font-size: 14px;
+    line-height: 17px;
+  }
 }

@@ -7,15 +7,17 @@
 @import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__title/popup__title.css);
-@import url(../blocks/popup/__firstname/popup__firstname.css);
-@import url(../blocks/popup/__info/popup__info.css);
+
+@import url(../blocks/form/__input-group/form__input-group.css);
+@import url(../blocks/form/__first-name/form__first-name.css);
+@import url(../blocks/form/__profession/form__profession.css);
+@import url(../blocks/form/__lang-link/form__lang-link.css);
 
 @import url(../blocks/header/header.css);
-@import url(../blocks/header/__border/heaer__border.css);
+@import url(../blocks/header/_border/heaer_border.css);
 
 @import url(../blocks/logo/logo.css);
 @import url(../blocks/logo/_theme/logo_theme_white.css);
-@import url(../blocks/logo/_theme/logo_theme_dark.css);
 
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
@@ -26,15 +28,15 @@
 @import url(../blocks/card/card.css);
 @import url(../blocks/card/__item/card__item.css);
 @import url(../blocks/card/__images/card__images.css);
-@import url(../blocks/card/__photo/card__photo.css);
 @import url(../blocks/card/__text/card__text.css);
+@import url(../blocks/card/__info/card__info.css);
 
 @import url(../blocks/button/button.css);
-@import url(../blocks/button/__add/button__add.css);
-@import url(../blocks/button/__pen/button__pen.css);
-@import url(../blocks/button/__heart/button__heart.css);
-@import url(../blocks/button/__save/button__save.css);
-@import url(../blocks/button/__close/button__close.css);
+@import url(../blocks/button/_action/button_action_add.css);
+@import url(../blocks/button/_action/button_action_close.css);
+@import url(../blocks/button/_action/button_action_heart.css);
+@import url(../blocks/button/_action/button_action_pen.css);
+@import url(../blocks/button/_action/button_action_save.css);
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__autor/footer__autor.css);
