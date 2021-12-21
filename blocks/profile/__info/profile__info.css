@@ -2,13 +2,16 @@
   padding-left: 30px;
   align-self: center;
   box-sizing: border-box;
-  position: relative;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 0 10px;
 }
 
 @media screen and (max-width: 750px) {
   /* стили для мобильного */
   .profile__info {
     padding-top: 26px;
-    padding-left: 0;
+    padding-left: 22px;
+    grid-template-columns: 190px 1fr;
   }
 }

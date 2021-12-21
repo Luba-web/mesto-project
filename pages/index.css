@@ -8,13 +8,11 @@
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__title/popup__title.css);
 
-@import url(../blocks/form/__input-group/form__input-group.css);
+@import url(../blocks/form/form.css);
 @import url(../blocks/form/__first-name/form__first-name.css);
 @import url(../blocks/form/__profession/form__profession.css);
-@import url(../blocks/form/__lang-link/form__lang-link.css);
 
 @import url(../blocks/header/header.css);
-@import url(../blocks/header/_border/heaer_border.css);
 
 @import url(../blocks/logo/logo.css);
 @import url(../blocks/logo/_theme/logo_theme_white.css);
@@ -26,6 +24,7 @@
 @import url(../blocks/profile/__title/profile__title.css);
 
 @import url(../blocks/card/card.css);
+@import url(../blocks/card/__block/card__block.css);
 @import url(../blocks/card/__item/card__item.css);
 @import url(../blocks/card/__images/card__images.css);
 @import url(../blocks/card/__text/card__text.css);
