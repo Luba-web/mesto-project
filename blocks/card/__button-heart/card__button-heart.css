@@ -1,21 +1,17 @@
-.button_action_heart {
+.card__button-heart {
   width: 22px;
   height: 19px;
   background-image: url(../../../images/heard.svg);
-  background-repeat: no-repeat;
-  background-position: center;
   border: none;
   background-color: #fff;
-  padding: 0;
   align-self: center;
-  transition: 0.3s;
 }
 
-.button_action_heart:hover {
+.card__button-heart:hover {
   opacity: 0.5;
 }
 
-.button_action_heart:active {
+.card__button-heart:active {
   background-image: url(../../../images/heartBlack.svg);
   background-repeat: no-repeat;
   background-position: center;

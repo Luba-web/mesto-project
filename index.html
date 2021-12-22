@@ -13,23 +13,23 @@
         <button
           type="button"
           aria-label="закрыть всплывающее окно"
-          class="button button_action_close"
+          class="button popup__button-close"
         ></button>
         <h2 class="popup__title">Редактировать профиль</h2>
         <form name="editing" class="form">
-            <input
-              type="text"
-              name="first-name"
-              placeholder="Жак-Ив Кусто"
-              class="form__first-name"
-            />
-            <input
-              type="text"
-              name="profession"
-              placeholder="Исследователь океана"
-              class="form__profession"
-            />
-          <button type="submit" class="button button_action_save">
+          <input
+            type="text"
+            name="first-name"
+            placeholder="Имя автора"
+            class="form__input form__input_name_first-name"
+          />
+          <input
+            type="text"
+            name="profession"
+            placeholder="Профессия"
+            class="form__input form__input_name_profession"
+          />
+          <button type="submit" class="button form__button-save">
             Сохранить
           </button>
         </form>
@@ -44,9 +44,9 @@
         <div class="profile__info">
           <h1 class="profile__title">Жак-Ив Кусто</h1>
           <p class="profile__subtitle">Исследователь океана</p>
-          <button type="button" class="button button_action_pen"></button>
+          <button type="button" class="button profile__button-pen"></button>
         </div>
-        <button type="button" class="button button_action_add"></button>
+        <button type="button" class="button profile__button-add"></button>
       </section>
       <section class="card">
         <ul class="card__block">
@@ -54,35 +54,35 @@
             <img src="./images/1.jpg" alt="енот мася" class="card__images" />
             <div class="card__info">
               <h2 class="card__text">Мася</h2>
-              <button type="button" class="button button_action_heart"></button>
+              <button type="button" class="button card__button-heart"></button>
             </div>
           </li>
           <li class="card__item">
             <img src="./images/2.jpg" alt="енот суся" class="card__images" />
             <div class="card__info">
               <h2 class="card__text">Суся</h2>
-              <button type="button" class="button button_action_heart"></button>
+              <button type="button" class="button card__button-heart"></button>
             </div>
           </li>
           <li class="card__item">
             <img src="./images/3.jpg" alt="енот вася" class="card__images" />
             <div class="card__info">
               <h2 class="card__text">Вася</h2>
-              <button type="button" class="button button_action_heart"></button>
+              <button type="button" class="button card__button-heart"></button>
             </div>
           </li>
           <li class="card__item">
             <img src="./images/4.jpg" alt="енот ляся" class="card__images" />
             <div class="card__info">
               <h2 class="card__text">Ляся</h2>
-              <button type="button" class="button button_action_heart"></button>
+              <button type="button" class="button card__button-heart"></button>
             </div>
           </li>
           <li class="card__item">
             <img src="./images/5.jpg" alt="енот ося" class="card__images" />
             <div class="card__info">
               <h2 class="card__text">Ося</h2>
-              <button type="button" class="button button_action_heart"></button>
+              <button type="button" class="button card__button-heart"></button>
             </div>
           </li>
           <li class="card__item">
@@ -93,7 +93,7 @@
             />
             <div class="card__info">
               <h2 class="card__text">Мистер Бося Старший</h2>
-              <button type="button" class="button button_action_heart"></button>
+              <button type="button" class="button card__button-heart"></button>
             </div>
           </li>
         </ul>
