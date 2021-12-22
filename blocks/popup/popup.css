@@ -1,4 +1,5 @@
 .popup {
+  min-width: 282px;
   display: none;
   background: rgba(0, 0, 0, 0.5);
   align-items: center;
