@@ -7,34 +7,8 @@
     <link rel="stylesheet" href="./pages/index.css" />
     <title>Место</title>
   </head>
+
   <body class="page">
-    <div class="popup popup_opened">
-      <div class="popup__container">
-        <button
-          type="button"
-          aria-label="закрыть всплывающее окно"
-          class="button popup__button-close"
-        ></button>
-        <h2 class="popup__title">Редактировать профиль</h2>
-        <form name="editing" class="form">
-          <input
-            type="text"
-            name="first-name"
-            placeholder="Имя"
-            class="form__input form__input_name_first-name"
-          />
-          <input
-            type="text"
-            name="profession"
-            placeholder="Профессия"
-            class="form__input form__input_name_profession"
-          />
-          <button type="submit" class="button form__button-save">
-            Сохранить
-          </button>
-        </form>
-      </div>
-    </div>
     <header class="header">
       <div class="logo logo_theme_white"></div>
     </header>
@@ -46,7 +20,7 @@
           <p class="profile__subtitle">Исследователь океана</p>
           <button type="button" class="button profile__button-pen"></button>
         </div>
-        <button type="button" class="button profile__button-add"></button>
+        <button type="button" class="button profile__button-add" id ="profileAdd"></button>
       </section>
       <section class="card">
         <ul class="card__block">
@@ -102,5 +76,98 @@
     <footer class="footer">
       <p class="footer__autor">&copy; 2021. Любовь Васильева</p>
     </footer>
+    <div id="profile" class="popup popup_opened">
+      <div class="popup__container">
+        <button
+          type="button"
+          aria-label="закрыть всплывающее окно"
+          class="button popup__button-close"
+          id = "profileClose"
+        ></button>
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form name="profileForm" class="form" id = "profileForm">
+          <input
+            type="text"
+            name="first-name"
+            placeholder="Имя"
+            class="form__input form__input_name_first-name"
+            id = "profileName"
+          />
+          <input
+            type="text"
+            name="profession"
+            placeholder="Профессия"
+            class="form__input form__input_name_profession"
+            id = "profileProfession"
+          />
+          <button type="submit" class="button form__button-save" id = "profileSave">
+            Сохранить
+          </button>
+        </form>
+      </div>
+    </div>
+  <div id="cardMesto" class="popup popup_opened">
+      <div class="popup__container">
+        <button
+          type="button"
+          aria-label="закрыть всплывающее окно"
+          class="button popup__button-close"
+          id="cardMestoClose"
+        ></button>
+        <h2 class="popup__title">Новое место</h2>
+        <form name="editing" class="form" id="cardMestoForm">
+          <input
+            type="text"
+            name="first-name"
+            placeholder="Название"
+            class="form__input form__input_name_first-name"
+            id="cardMestoName"
+          />
+          <input
+            type="text"
+            name="linkImg"
+            placeholder="Ссылка на картинку"
+            class="form__input form__input_name_profession"
+            id="cardMestoLink"
+          />
+          <button type="submit" class="button form__button-save" id="cardMestoSave">
+            Создать
+          </button>
+        </form>
+      </div>
+    </div>
+ <!--    <div id="photoAvatar" class="popup popup_opened">
+      <div class="popup__container">
+        <button
+          type="button"
+          aria-label="закрыть всплывающее окно"
+          class="button popup__button-close"
+        ></button>
+        <h2 class="popup__title">Вставить фото</h2>
+        <form name="photoAvatar" class="form" >
+          <input
+            type="text"
+            name="linkImg"
+            placeholder="Ссылка на фото"
+            class="form__input form__input_name_profession"
+            pattern="https://.*"
+            required
+          />
+          <button type="submit" class="button form__button-save">
+            сохранить
+          </button>
+        </form>
+      </div>
+    </div>
+    <div id="photoMesto" class="popup popup_opened">
+      <div class="popup__container">
+        <button
+          type="button"
+          aria-label="закрыть всплывающее окно"
+          class="button popup__button-close"
+        ></button>
+      </div>
+    </div>-->
+    <script src="./index.js"></script>
   </body>
 </html>

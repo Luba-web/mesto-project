@@ -13,6 +13,7 @@
 @import url(../blocks/form/__input/form__input.css);
 @import url(../blocks/form/__input/form__input_name_first-name.css);
 @import url(../blocks/form/__input/form__input_name_profession.css);
+@import url(../blocks/form/__input/form__input_name_link.css);
 @import url(../blocks/form/__button-save/form__button-save.css);
 
 @import url(../blocks/header/header.css);
