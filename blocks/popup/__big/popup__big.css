@@ -1,7 +1,8 @@
 .popup__big {
+  width: auto;
   background: none;
   border-radius: 0;
   padding: 0px;
-  max-width: 75%;
-  max-height: 75%;
+  max-width: 75vw;
+  max-height: 75vh;
 }

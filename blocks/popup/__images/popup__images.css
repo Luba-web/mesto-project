@@ -2,4 +2,14 @@
   width: 100%;
   object-fit: cover;
   display: block;
+  max-width: 75vw;
+  max-height: 75vh;
+}
+
+@media screen and (max-width: 600px) {
+  /* стили для мобильного */
+  .popup__images {
+    max-width: none;
+    max-height: none;
+  }
 }
