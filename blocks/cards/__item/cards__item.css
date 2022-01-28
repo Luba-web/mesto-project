@@ -1,6 +1,7 @@
-.card__item {
+.cards__item {
   display: flex;
   flex-direction: column;
   background: #fff;
   border-radius: 10px;
+  position: relative;
 }

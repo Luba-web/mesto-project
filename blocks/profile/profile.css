@@ -6,7 +6,7 @@
   grid-template-columns: 120px 1fr 1fr;
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 760px) {
   /* стили для мобильного */
   .profile {
     grid-template-columns: none;

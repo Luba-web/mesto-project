@@ -1,0 +1,7 @@
+.cards__like_active {
+  background-image: url(../../../../images/heartBlack.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  opacity: 1;
+}

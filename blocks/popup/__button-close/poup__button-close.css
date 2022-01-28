@@ -4,8 +4,8 @@
   background-image: url(../../../images/close.svg);
   background-size: 100%;
   position: absolute;
-  right: -10%;
-  top: -12%;
+  right: -32px;
+  top: -32px;
   background-color: transparent;
   border: none;
 }
@@ -16,6 +16,7 @@
     width: 20px;
     height: 20px;
     right: 0;
-    top: -11%;
+    right: 0;
+    top: -36px;
   }
 }

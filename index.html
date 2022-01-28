@@ -20,154 +20,96 @@
           <p class="profile__subtitle">Исследователь океана</p>
           <button type="button" class="button profile__button-pen"></button>
         </div>
-        <button type="button" class="button profile__button-add" id ="profileAdd"></button>
+        <button
+          type="button"
+          class="button profile__button-add"
+          id="profileAdd"
+        ></button>
       </section>
-      <section class="card">
-        <ul class="card__block">
-          <li class="card__item">
-            <img src="./images/1.jpg" alt="енот мася" class="card__images" />
-            <div class="card__info">
-              <h2 class="card__text">Мася</h2>
-              <button type="button" class="button card__button-heart"></button>
-            </div>
-          </li>
-          <li class="card__item">
-            <img src="./images/2.jpg" alt="енот суся" class="card__images" />
-            <div class="card__info">
-              <h2 class="card__text">Суся</h2>
-              <button type="button" class="button card__button-heart"></button>
-            </div>
-          </li>
-          <li class="card__item">
-            <img src="./images/3.jpg" alt="енот вася" class="card__images" />
-            <div class="card__info">
-              <h2 class="card__text">Вася</h2>
-              <button type="button" class="button card__button-heart"></button>
-            </div>
-          </li>
-          <li class="card__item">
-            <img src="./images/4.jpg" alt="енот ляся" class="card__images" />
-            <div class="card__info">
-              <h2 class="card__text">Ляся</h2>
-              <button type="button" class="button card__button-heart"></button>
-            </div>
-          </li>
-          <li class="card__item">
-            <img src="./images/5.jpg" alt="енот ося" class="card__images" />
-            <div class="card__info">
-              <h2 class="card__text">Ося</h2>
-              <button type="button" class="button card__button-heart"></button>
-            </div>
-          </li>
-          <li class="card__item">
-            <img
-              src="./images/6.jpg"
-              alt="енот мистер бося старший"
-              class="card__images"
-            />
-            <div class="card__info">
-              <h2 class="card__text">Мистер Бося Старший</h2>
-              <button type="button" class="button card__button-heart"></button>
-            </div>
-          </li>
-        </ul>
+      <section>
+        <ul class="cards"></ul>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__autor">&copy; 2021. Любовь Васильева</p>
     </footer>
-    <div id="profile" class="popup popup_opened">
+    <div id="profile" class="popup">
       <div class="popup__container">
         <button
           type="button"
           aria-label="закрыть всплывающее окно"
           class="button popup__button-close"
-          id = "profileClose"
         ></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form name="profileForm" class="form" id = "profileForm">
+        <form name="profileForm" class="form" id="profileForm">
           <input
             type="text"
-            name="first-name"
+            name="firstName"
+            value="Жак-Ив Кусто"
             placeholder="Имя"
             class="form__input form__input_name_first-name"
-            id = "profileName"
           />
           <input
             type="text"
             name="profession"
+            value="Исследователь океана"
             placeholder="Профессия"
             class="form__input form__input_name_profession"
-            id = "profileProfession"
           />
-          <button type="submit" class="button form__button-save" id = "profileSave">
+          <button type="submit" class="button form__button-save">
             Сохранить
           </button>
         </form>
       </div>
     </div>
-  <div id="cardMesto" class="popup popup_opened">
+    <div id="cardMesto" class="popup">
       <div class="popup__container">
         <button
           type="button"
           aria-label="закрыть всплывающее окно"
           class="button popup__button-close"
-          id="cardMestoClose"
         ></button>
         <h2 class="popup__title">Новое место</h2>
-        <form name="editing" class="form" id="cardMestoForm">
+        <form name="cardMestoForm" class="form" id="cardMestoForm">
           <input
             type="text"
-            name="first-name"
+            name="nameImg"
             placeholder="Название"
             class="form__input form__input_name_first-name"
-            id="cardMestoName"
           />
           <input
             type="text"
             name="linkImg"
             placeholder="Ссылка на картинку"
             class="form__input form__input_name_profession"
-            id="cardMestoLink"
           />
-          <button type="submit" class="button form__button-save" id="cardMestoSave">
+          <button type="submit" class="button form__button-save">
             Создать
           </button>
         </form>
       </div>
     </div>
- <!--    <div id="photoAvatar" class="popup popup_opened">
-      <div class="popup__container">
+    <div id="popupImages" class="popup popup__overlay">
+      <div class="popup__container popup__big">
         <button
           type="button"
           aria-label="закрыть всплывающее окно"
           class="button popup__button-close"
         ></button>
-        <h2 class="popup__title">Вставить фото</h2>
-        <form name="photoAvatar" class="form" >
-          <input
-            type="text"
-            name="linkImg"
-            placeholder="Ссылка на фото"
-            class="form__input form__input_name_profession"
-            pattern="https://.*"
-            required
-          />
-          <button type="submit" class="button form__button-save">
-            сохранить
-          </button>
-        </form>
+        <img src="#" alt="картинка" class="popup__images" />
+        <h2 class="popup__caption">Имя картинки</h2>
       </div>
     </div>
-    <div id="photoMesto" class="popup popup_opened">
-      <div class="popup__container">
-        <button
-          type="button"
-          aria-label="закрыть всплывающее окно"
-          class="button popup__button-close"
-        ></button>
-      </div>
-    </div>-->
-    <script src="./index.js"></script>
+    <template id="cardTemplate">
+      <li class="cards__item">
+        <img src="${linkCard}" alt="${nameCard}" class="cards__images" />
+        <div class="cards__info">
+          <h2 class="cards__text">${nameCard}</h2>
+          <button type="button" class="button cards__like"></button>
+        </div>
+        <button type="button" class="button cards__button-delete"></button>
+      </li>
+    </template>
+    <script src="./index.js" defer></script>
   </body>
 </html>
