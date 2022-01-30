@@ -69,7 +69,7 @@ function formSubmitProfile(event) {
   event.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
-  closePopup(profileEditForm);
+  closePopup(popupProfile);
 }
 
 //функция 'Submit cardMestoForm'
@@ -80,7 +80,7 @@ function formSubmitCard(event) {
     link: linkInputCard.value
   };
   addCard(cardData);
-  closePopup(cardEditMestoForm);
+  closePopup(popupCardMesto);
   cardEditMestoForm.reset();
 }
 
