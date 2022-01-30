@@ -18,6 +18,7 @@
 @media screen and (max-width: 580px) {
   /* стили для мобильного */
   .popup__container {
+    width: 282px;
     min-width: 282px;
     min-height: 322px;
     padding: 25px 22px;
