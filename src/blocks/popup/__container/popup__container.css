@@ -13,6 +13,7 @@
   padding: 34px 36px 37px;
   border: none;
   position: relative;
+  cursor: default;
 }
 
 @media screen and (max-width: 580px) {

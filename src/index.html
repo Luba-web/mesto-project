@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./pages/index.css" />
     <title>Место</title>
   </head>
 
@@ -26,7 +25,7 @@
           id="profileAdd"
         ></button>
       </section>
-      <section>
+      <section >
         <ul class="cards"></ul>
       </section>
     </main>
@@ -41,21 +40,31 @@
           class="button popup__button-close"
         ></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form name="profileForm" class="form" id="profileForm">
+        <form name="profileForm" class="form" id="profileForm" novalidate>
           <input
             type="text"
             name="firstName"
+            id="firstName"
             value="Жак-Ив Кусто"
             placeholder="Имя"
             class="form__input form__input_name_first-name"
+            required
+            minlength="2"
+            maxlength="40"
           />
+          <span id="firstName-error" class="error"></span>
           <input
             type="text"
             name="profession"
+            id="profession"
             value="Исследователь океана"
             placeholder="Профессия"
             class="form__input form__input_name_profession"
+            required
+            minlength="2"
+            maxlength="200"
           />
+          <span id="profession-error" class="error"></span>
           <button type="submit" class="button form__button-save">
             Сохранить
           </button>
@@ -70,20 +79,31 @@
           class="button popup__button-close"
         ></button>
         <h2 class="popup__title">Новое место</h2>
-        <form name="cardMestoForm" class="form" id="cardMestoForm">
+        <form name="cardMestoForm" class="form" id="cardMestoForm" novalidate>
           <input
             type="text"
             name="nameImg"
+            id="nameImg"
             placeholder="Название"
             class="form__input form__input_name_first-name"
+            required
+            minlength="2"
+            maxlength="30"
           />
+          <span id="nameImg-error" class="error"></span>
           <input
-            type="text"
+            type="url"
             name="linkImg"
+            id="linkImg"
             placeholder="Ссылка на картинку"
             class="form__input form__input_name_profession"
+            required
           />
-          <button type="submit" class="button form__button-save">
+          <span id="linkImg-error" class="error"></span>
+          <button
+            type="submit"
+            class="button form__button-save form__button-save_disabled"
+          >
             Создать
           </button>
         </form>
@@ -110,6 +130,5 @@
         <button type="button" class="button cards__button-delete"></button>
       </li>
     </template>
-    <script src="./index.js" defer></script>
   </body>
 </html>

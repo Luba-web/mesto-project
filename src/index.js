@@ -1,62 +1,18 @@
-//находим переменные
-const popupProfile = document.querySelector("#profile");
-const popupCardMesto = document.querySelector("#cardMesto");
-const popupImages = document.querySelector("#popupImages");
+import "../pages/index.css";
+import { initialCards } from "./utils/contstants";
+import { popupProfile, popupCardMesto, popupImages, btnPen, btnProfileSave,
+  btnCardMestoAdd, btnCardMestoSave, initialCards } from "./utils/contstants";
+import { profileName, profileJob, popupPhoto, cardContainer, cardTemlate } from "./utils/contstants";
+import { profileEditForm, nameInput, jobInput, cardEditMestoForm, nameInputCard, linkInputCard } from "./utils/contstants";
 
-const profileEditForm = document.forms["profileForm"];
-const nameInput = profileEditForm.elements.firstName;
-const jobInput = profileEditForm.elements.profession;
-
-const cardEditMestoForm = document.forms["cardMestoForm"];
-const nameInputCard = cardEditMestoForm.elements.nameImg;
-const linkInputCard = cardEditMestoForm.elements.linkImg;
-
-const btnPen = document.querySelector(".profile__button-pen");
-const btnProfileSave = document.querySelector("#profileForm");
-const bthCloseProfile = popupProfile.querySelector(".popup__button-close");
-const bthCloseCardMesto = popupCardMesto.querySelector(".popup__button-close");
-const bthCloseImages = popupImages.querySelector(".popup__button-close");
-
-const profileName = document.querySelector(".profile__title");
-const profileJob = document.querySelector(".profile__subtitle");
-
-const btnCardMestoAdd = document.querySelector("#profileAdd");
-const btnCardMestoSave = document.querySelector("#cardMestoForm");
-
-const cardContainer = document.querySelector(".cards");
-const cardTemlate = document.querySelector("#cardTemplate").content;
-
-const popupPhoto = document.querySelector("#photoMesto");
-const initialCards = [
-  {
-    name: "Мася",
-    link: "./images/1.jpg",
-  },
-  {
-    name: "Суся",
-    link: "./images/2.jpg",
-  },
-  {
-    name: "Вася",
-    link: "./images/3.jpg",
-  },
-  {
-    name: "Ляся",
-    link: "./images/4.jpg",
-  },
-  {
-    name: "Ося",
-    link: "./images/5.jpg",
-  },
-  {
-    name: "Мистер Бося Старший",
-    link: "./images/6.jpg",
-  },
-];
-
-//функция открытие модального окна
+//функция открытие модального окна и закрытия на esc
 function openPopup(popup) {
   popup.classList.add("popup_opened");
+  document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+      popup.classList.remove("popup_opened");
+    }
+  });
 }
 
 //функция закрытие модального окна
@@ -77,7 +33,7 @@ function formSubmitCard(event) {
   event.preventDefault();
   const cardData = {
     name: nameInputCard.value,
-    link: linkInputCard.value
+    link: linkInputCard.value,
   };
   addCard(cardData);
   closePopup(popupCardMesto);
@@ -115,7 +71,7 @@ function renderCard(cardNew) {
 }
 
 //функция открытия картинки/фото
-const openPhoto = (cardNew) => {
+function openPhoto(cardNew) {
   popupImages.querySelector(".popup__images").src = cardNew.link;
   popupImages.querySelector(".popup__images").alt = cardNew.name;
   popupImages.querySelector(".popup__caption").textContent = cardNew.name;
@@ -127,20 +83,29 @@ function likeActive(event) {
   event.target.classList.toggle("cards__like_active");
 }
 
+
+
 //обрабочики событий(слушатели)
 
-//слушатель для всех кнопок закрытия
-bthCloseProfile.addEventListener("click", () => {
-  closePopup(popupProfile);
+//слушатели для закрытия модальных окон на область или крестик
+popupProfile.addEventListener("click", (evt) => {
+  if(evt.target.classList.contains('popup') || evt.target.classList.contains('popup__button-close')){
+    closePopup(popupProfile);
+  }
 });
 
-bthCloseCardMesto.addEventListener("click", () => {
-  closePopup(popupCardMesto);
+popupCardMesto.addEventListener("click", (evt) => {
+  if(evt.target.classList.contains('popup') || evt.target.classList.contains('popup__button-close')){
+    closePopup(popupCardMesto);
+  }
 });
 
-bthCloseImages.addEventListener("click", () => {
-  closePopup(popupImages);
+popupImages.addEventListener("click", (evt) => {
+  if(evt.target.classList.contains('popup') || evt.target.classList.contains('popup__button-close')){
+    closePopup(popupImages);
+  }
 });
+
 
 // кнопки сохранения popupProfile и CardMesto
 btnProfileSave.addEventListener("submit", formSubmitProfile);
@@ -160,3 +125,4 @@ btnCardMestoAdd.addEventListener("click", () => {
 initialCards.forEach((item) => {
   addCard(item);
 });
+

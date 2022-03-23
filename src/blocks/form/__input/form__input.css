@@ -3,10 +3,10 @@
   width: 100%;
   border: none;
   border-bottom: 1px solid #00000033;
-  margin-bottom: 20px;
+  margin-top: 20px;
   padding: 10px 0;
 }
 
-.form__input:last-of-type {
-  margin-bottom: 0;
+.form__input:first-of-type {
+  margin-top: 0;
 }
