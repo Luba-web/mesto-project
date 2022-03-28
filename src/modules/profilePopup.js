@@ -20,17 +20,7 @@ export function formSubmitProfile(event) {
 
 // общая функция для развещивания слушателей
 export function setProfileListeners() {
-  //слушатели для закрытия модальных окон на область или крестик
-  popupProfile.addEventListener("click", (evt) => {
-    if (
-      evt.target.classList.contains("popup") ||
-      evt.target.classList.contains("popup__button-close")
-    ) {
-      closePopup(popupProfile);
-    }
-  });
-
-  // кнопки сохранения popupProfile и CardMesto
+// кнопки сохранения popupProfile и CardMesto
   btnProfileSave.addEventListener("submit", formSubmitProfile);
 
   //добавляем слушатели для модального окна popupProfile

@@ -19,7 +19,7 @@ const checkInputValidity = (errorElement, inputElement, config) => {
   }
 };
 
-const toggleButtonState = (button, isActive = false, config) => {
+export const toggleButtonState = (button, isActive = false, config) => {
   if(isActive){
       button.classList.remove(config.inactiveButtonClass);
       button.disabled = false;
@@ -38,12 +38,12 @@ const setEventListers = (formElement, config) => {
           checkInputValidity(formElement, inputElement, config);
           toggleButtonState(submitButton, formElement.checkValidity(), config);
       })
-      toggleButtonState(submitButton, formElement.checkValidity(), config);
   })
 
   formElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
       console.log('отправка формы');
+      toggleButtonState(submitButton, formElement.checkValidity(), config);
   })
 
 };

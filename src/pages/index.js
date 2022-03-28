@@ -9,6 +9,4 @@ import { config } from "../utils/contstants";
 drawInitialCards();
 setProfileListeners();
 setCardMestoListeners();
-setImagePopupListeners();
 enableValidation(config);
-console.log(config);

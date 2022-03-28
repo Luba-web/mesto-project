@@ -1,4 +1,6 @@
 import { openPhoto } from "../modules/imagePopup";
+import { cardContainer } from "../utils/contstants";
+
 //функция удаления карточки
 function deleteCard(event) {
   const card = event.target.closest(".cards__item");
@@ -31,6 +33,5 @@ function likeActive(event) {
 
 //функция добавление карточек
 export function addCard(cardNew) {
-  const cardContainer = document.querySelector(".cards");
   cardContainer.prepend(renderCard(cardNew));
 }
