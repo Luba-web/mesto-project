@@ -16,6 +16,7 @@ export function formSubmitProfile(event) {
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
   closePopup(popupProfile);
+
 }
 
 // общая функция для развещивания слушателей
@@ -26,5 +27,7 @@ export function setProfileListeners() {
   //добавляем слушатели для модального окна popupProfile
   btnPen.addEventListener("click", () => {
     openPopup(popupProfile);
+    nameInput.value = profileName.textContent;
+    jobInput.value = profileJob.textContent;
   });
 }

@@ -22,6 +22,15 @@ export function formSubmitCard(event) {
 
 // общая функция для развещивания слушателей
 export function setCardMestoListeners() {
+  //слушатели для закрытия модальных окон на область или крестик
+  popupCardMesto.addEventListener("click", (evt) => {
+    if (
+      evt.target.classList.contains("popup") ||
+      evt.target.classList.contains("popup__button-close")
+    ) {
+      closePopup(popupCardMesto);
+    }
+  });
   // кнопки сохранения CardMesto
   btnCardMestoSave.addEventListener("submit", formSubmitCard);
 
