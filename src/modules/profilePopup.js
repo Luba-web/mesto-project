@@ -21,7 +21,7 @@ export function formSubmitProfile(event) {
 
 // общая функция для развещивания слушателей
 export function setProfileListeners() {
-// кнопки сохранения popupProfile и CardMesto
+  // кнопки сохранения popupProfile и CardMesto
   btnProfileSave.addEventListener("submit", formSubmitProfile);
 
   //добавляем слушатели для модального окна popupProfile
