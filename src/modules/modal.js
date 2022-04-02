@@ -32,3 +32,12 @@ const handleOverlayAndCloseClick = (event) => {
     closePopup(activePopup);
   }
 }
+
+//функция изменения текста кнопки
+export const changeBtnLoading = (button, isLoading) => {
+  if(isLoading){
+    button.textContent = 'Сохранение...';
+  } else {
+    button.textContent = button.value;
+  }
+}

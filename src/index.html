@@ -13,7 +13,9 @@
     </header>
     <main>
       <section class="profile">
-        <div class="profile__avatar"></div>
+        <div class="profile__overlay">
+        <img class="profile__avatar" src="<%=require('./images/jak.jpg')%>" alt="аватар">
+        </div>
         <div class="profile__info">
           <h1 class="profile__title">Жак-Ив Кусто</h1>
           <p class="profile__subtitle">Исследователь океана</p>
@@ -32,6 +34,24 @@
     <footer class="footer">
       <p class="footer__autor">&copy; 2021. Любовь Васильева</p>
     </footer>
+    <div id="avatar" class="popup">
+      <div class="popup__container">
+        <button
+          type="button"
+          aria-label="закрыть всплывающее окно"
+          class="button popup__button-close"
+        ></button>
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form name="avatarForm" class="form" id="avatarForm" novalidate>
+          <input type="url" name="avatar" class="form__input" id="avatarPhoto" 
+          placeholder="Ссылка на фото"  required>
+          <span id="avatarForm-error" class="error"></span>
+          <button type="submit" class="button form__button-save">
+            Сохранить
+          </button>
+        </form>
+      </div>
+    </div>
     <div id="profile" class="popup">
       <div class="popup__container">
         <button
@@ -125,7 +145,10 @@
         <img src="${linkCard}" alt="${nameCard}" class="cards__images" />
         <div class="cards__info">
           <h2 class="cards__text">${nameCard}</h2>
-          <button type="button" class="button cards__like"></button>
+          <div>
+            <button type="button" class="button cards__like"></button>
+            <p class="cards__like-numbers"></p>
+          </div>
         </div>
         <button type="button" class="button cards__button-delete"></button>
       </li>

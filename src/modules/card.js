@@ -1,10 +1,13 @@
 import { openPhoto } from "../modules/imagePopup";
 import { cardContainer } from "../utils/contstants";
+import { addCardApi, removeCardApi, editLikeCardApi, deleteLikeCardApi } from "../modules/api";
 
 //функция удаления карточки
-function deleteCard(event) {
-  const card = event.target.closest(".cards__item");
-  card.remove();
+function deleteCard(event, cardNew) {
+  removeCardApi(cardNew)
+    .then(() => {
+      event.target.closest(".cards__item").remove();
+    })
 }
 
 //функция добавления карточек пользователем
@@ -13,6 +16,7 @@ function renderCard(cardNew) {
   const cardElement = cardTemlate.querySelector(".cards__item").cloneNode(true);
   const imageCard = cardElement.querySelector(".cards__images");
   const nameCard = cardElement.querySelector(".cards__text");
+
   nameCard.textContent = cardNew.name;
   imageCard.src = cardNew.link;
   imageCard.alt = cardNew.name;
@@ -21,7 +25,9 @@ function renderCard(cardNew) {
     .addEventListener("click", likeActive);
   cardElement
     .querySelector(".cards__button-delete")
-    .addEventListener("click", deleteCard);
+    .addEventListener("click", (event) => {
+      deleteCard(event, cardNew);
+    })
   imageCard.addEventListener("click", () => openPhoto(cardNew));
   return cardElement;
 }
@@ -33,5 +39,8 @@ function likeActive(event) {
 
 //функция добавление карточек
 export function addCard(cardNew) {
-  cardContainer.prepend(renderCard(cardNew));
+  addCardApi(cardNew)
+  .then((cardNew) => {
+    cardContainer.prepend(renderCard(cardNew));
+  })
 }

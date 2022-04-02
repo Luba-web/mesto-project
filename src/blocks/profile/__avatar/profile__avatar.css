@@ -1,10 +1,12 @@
 .profile__avatar {
-  display: block;
   width: 120px;
   height: 120px;
-  background: url(../../../images/Jak.jpg);
-  background-position: center;
-  background-repeat: no-repeat;
   object-fit: cover;
   border-radius: 100%;
+}
+
+.profile__avatar:hover {
+  transition: opacity .2s;
+  opacity: 0.2;
+  cursor: pointer;
 }

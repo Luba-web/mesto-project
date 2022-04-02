@@ -1,0 +1,10 @@
+.profile__overlay {
+  display: block;
+}
+
+.profile__overlay:hover {
+  background-image: url(../../../images/pen.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 45px;
+}
