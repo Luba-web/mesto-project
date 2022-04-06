@@ -1,11 +1,23 @@
 import { openPhoto } from "../modules/imagePopup";
 import { cardContainer } from "../utils/contstants";
 import { user } from "../modules/profilePopup";
-import { getAllCards, addLikeServer, removeLikeServer } from "../modules/api";
+import {
+  getAllCards,
+  removeCardServer,
+  addLikeServer,
+  removeLikeServer,
+} from "../modules/api";
 
 //функция удаления карточки
-function deleteCard(event) {
-  event.target.closest(".cards__item").remove();
+function deleteCard(event, cardNew) {
+  removeCardServer(cardNew)
+    // .then((res) => {
+    //   return res;
+    // })
+    .then(() => {
+      event.target.closest(".cards__item").remove();
+    })
+    .catch((err) => console.log(err));
 }
 
 //функция добавления карточек пользователем
@@ -29,7 +41,9 @@ function renderCard(cardNew) {
     handleBtnLike(event, likeNumbers, cardNew);
   });
   //слушатель на кнопку урны
-  btnDelete.addEventListener("click", deleteCard);
+  btnDelete.addEventListener("click", (event) => {
+    deleteCard(event, cardNew);
+  });
   //слушатель нажатия на картинку
   imageCard.addEventListener("click", () => {
     openPhoto(cardNew);

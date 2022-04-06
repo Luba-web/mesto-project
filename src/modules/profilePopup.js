@@ -1,5 +1,6 @@
 import { openPopup, closePopup, changeBtnLoading } from "../modules/modal";
-import { getAllUser, changeProfile, changeAvatar } from "../modules/api";
+import { getAllCards, getAllUser, changeProfile, changeAvatar } from "../modules/api";
+import { addCard } from "../modules/card";
 
 const popupProfile = document.querySelector("#profile");
 const btnProfileSave = document.querySelector("#profileForm");
@@ -20,6 +21,13 @@ const imgAvatar = document.querySelector(".profile__avatar");
 const savedAvatar = btnAvatarSave.querySelector(".form__button-save");
 
 export const user = { id: "" };
+//добавление карточек
+getAllCards().then((initialCards) => {
+  initialCards.forEach((item) => {
+    addCard(item);
+  })
+});
+
 //информация с сервера про пользователя
 getAllUser()
   .then((res) => {
@@ -32,6 +40,13 @@ getAllUser()
     jobInput.value = res.about;
     user.likes = res._likes;
   })
+  .catch((err) => console.log(err));
+
+
+Promise.all([getAllCards(), getAllUser])
+  .then((res) => {
+    return res;
+    })
   .catch((err) => console.log(err));
 
 //функция 'Submit profileForm'

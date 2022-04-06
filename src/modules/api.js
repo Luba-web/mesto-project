@@ -4,21 +4,20 @@
 const configApi = {
   url: "https://mesto.nomoreparties.co/v1/plus-cohort-8/",
   headers: {
-    authorization: "cb8f559f-5b92-4512-9828-0e4dd400de93",
+    "authorization": "cb8f559f-5b92-4512-9828-0e4dd400de93",
     "Content-Type": "application/json",
   },
-};
+}
 
 //проверка на статус OK
 export const onResponce = (responce) => {
   return responce.ok ? responce.json() : Promise.reject("Ошибка : " + responce);
-};
+}
 
 //запрос профиля
 export function getAllUser() {
-  return fetch(`${configApi.url}users/me`, { headers: configApi.headers }).then(
-    onResponce
-  );
+  return fetch(`${configApi.url}users/me`, { headers: configApi.headers })
+  .then(onResponce);
 }
 
 //запрос на изменение Profile
@@ -44,9 +43,8 @@ export function changeAvatar(data) {
 
 //запрос по карточкам на сервер
 export function getAllCards() {
-  return fetch(`${configApi.url}cards`, { headers: configApi.headers }).then(
-    onResponce
-  );
+  return fetch(`${configApi.url}cards`, { headers: configApi.headers })
+  .then(onResponce);
 }
 
 //запрос на добавление карточек
