@@ -1,5 +1,4 @@
 import { openPopup } from "../modules/modal";
-
 const popupImages = document.querySelector("#popupImages");
 const popupPhoto = document.querySelector(".popup__images");
 

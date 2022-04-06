@@ -18,7 +18,7 @@ export function closePopup(popup) {
 const handleEsс = (event) => {
   const activePopup = document.querySelector(".popup_opened");
   if (event.key === "Escape") {
-   closePopup(activePopup);
+    closePopup(activePopup);
   }
 }
 
@@ -34,10 +34,11 @@ const handleOverlayAndCloseClick = (event) => {
 }
 
 //функция изменения текста кнопки
-export const changeBtnLoading = (button, isLoading) => {
-  if(isLoading){
-    button.textContent = 'Сохранение...';
+export const changeBtnLoading = (isLoading, bntSaved) => {
+  const btn = bntSaved.textContent;
+  if (isLoading) {
+    bntSaved.textContent = "Сохранение..";
   } else {
-    button.textContent = button.value;
+    bntSaved.textContent = btn;
   }
 }

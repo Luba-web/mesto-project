@@ -1,5 +1,6 @@
-import { openPopup, closePopup } from "../modules/modal";
+import { openPopup, closePopup, changeBtnLoading } from "../modules/modal";
 import { addCard } from "../modules/card";
+import { addCardServer } from "../modules/api";
 
 const popupCardMesto = document.querySelector("#cardMesto");
 const cardEditMestoForm = document.forms["cardMestoForm"];
@@ -7,17 +8,26 @@ const nameInputCard = cardEditMestoForm.elements.nameImg;
 const linkInputCard = cardEditMestoForm.elements.linkImg;
 const btnCardMestoAdd = document.querySelector("#profileAdd");
 const btnCardMestoSave = document.querySelector("#cardMestoForm");
+const bntSaved = cardEditMestoForm.querySelector(".form__button-save");
 
 //функция 'Submit cardMestoForm'
 export function formSubmitCard(event) {
+  event.preventDefault();
   const cardData = {
     name: nameInputCard.value,
     link: linkInputCard.value,
   };
-  event.preventDefault();
-  addCard(cardData);
-  closePopup(popupCardMesto);
-  cardEditMestoForm.reset();
+  changeBtnLoading(true, bntSaved);
+  addCardServer(cardData)
+    .then((cardData) => {
+      addCard(cardData);
+      closePopup(popupCardMesto);
+      cardEditMestoForm.reset();
+    })
+    .catch((err) => console.log(err))
+    .finally(() => {
+      changeBtnLoading(false, bntSaved);
+    });
 }
 
 // общая функция для развещивания слушателей
