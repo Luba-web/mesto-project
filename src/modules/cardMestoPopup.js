@@ -22,6 +22,7 @@ export function submitFormCard(event) {
     .then((cardData) => {
       addCard(cardData);
       closePopup(popupCardMesto);
+      bntSaved.classList.add("form__button-save_disabled");
       cardEditMestoForm.reset();
     })
     .catch((err) => console.log(err))

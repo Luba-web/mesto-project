@@ -83,6 +83,7 @@ function submitFormAvatar(event) {
     .then((dataAvatar) => {
       imgAvatar.src = dataAvatar.avatar;
       closePopup(popupAvatar);
+      savedAvatar.classList.add("form__button-save_disabled");
       avatarForm.reset();
     })
     .catch((err) => console.log(err))

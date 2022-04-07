@@ -35,10 +35,9 @@ const handleOverlayAndCloseClick = (event) => {
 
 //функция изменения текста кнопки
 export const changeBtnLoading = (isLoading, bntSaved) => {
-  const btn = bntSaved.textContent;
   if (isLoading) {
     bntSaved.textContent = "Сохранение..";
   } else {
-    bntSaved.textContent = btn;
+    bntSaved.textContent = "Сохранить"
   }
 }
