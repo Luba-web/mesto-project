@@ -33,9 +33,15 @@ function renderCard(cardNew) {
   imageCard.src = cardNew.link;
   imageCard.alt = cardNew.name;
   likeNumbers.textContent = cardNew.likes.length;
+
+  if (aktiveLike(cardNew)) {
+    btnLike.classList.add("cards__like_active");
+  }
+
   if (cardNew.owner._id !== user.id) {
     btnDelete.style.display = "none";
   }
+
   //слушатель лайка
   btnLike.addEventListener("click", (event) => {
     handleBtnLike(event, likeNumbers, cardNew);
@@ -51,26 +57,27 @@ function renderCard(cardNew) {
 
   return cardElement;
 }
+//функция активности значка лайка
+function aktiveLike(cardNew) {
+  return cardNew.likes.find((like) => like._id === user.id) ? true : false;
+}
 
 //функция подсчета лайков
 function handleBtnLike(event, likeNumbersElement, cardNew) {
-  if (event.target.classList.toggle("cards__like_active")) {
-    addLikeServer(cardNew)
-      .then((res) => {
-        return res;
-      })
+  if (aktiveLike(cardNew)) {
+    removeLikeServer(cardNew)
       .then((res) => {
         likeNumbersElement.textContent = res.likes.length;
+        event.target.classList.remove("cards__like_active");
+        cardNew.likes = res.likes;
       })
       .catch((err) => console.log(err));
   } else {
-    removeLikeServer(cardNew)
-      .then((res) => {
-        cardNew.likes.find((like) => like._id === user.id);
-        return res;
-      })
+    addLikeServer(cardNew)
       .then((res) => {
         likeNumbersElement.textContent = res.likes.length;
+        event.target.classList.add("cards__like_active");
+        cardNew.likes = res.likes;
       })
       .catch((err) => console.log(err));
   }

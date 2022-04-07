@@ -24,11 +24,12 @@ const handleEsс = (event) => {
 
 //функция закрытие крестик или по клику на оверлей
 const handleOverlayAndCloseClick = (event) => {
+  const popup = event.target.closest('.popup');
   if (
     event.target.classList.contains("popup") ||
     event.target.classList.contains("popup__button-close")
   ) {
-    closePopup(event.target);
+    closePopup(popup);
   }
 }
 
