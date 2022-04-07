@@ -16,20 +16,19 @@ export function closePopup(popup) {
 
 //функция закрытие на ECS
 const handleEsс = (event) => {
-  const activePopup = document.querySelector(".popup_opened");
   if (event.key === "Escape") {
+    const activePopup = document.querySelector(".popup_opened");
     closePopup(activePopup);
   }
 }
 
 //функция закрытие крестик или по клику на оверлей
 const handleOverlayAndCloseClick = (event) => {
-  const activePopup = document.querySelector(".popup_opened");
   if (
     event.target.classList.contains("popup") ||
     event.target.classList.contains("popup__button-close")
   ) {
-    closePopup(activePopup);
+    closePopup(event.target);
   }
 }
 

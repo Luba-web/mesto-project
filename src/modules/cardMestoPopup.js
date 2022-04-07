@@ -11,7 +11,7 @@ const btnCardMestoSave = document.querySelector("#cardMestoForm");
 const bntSaved = cardEditMestoForm.querySelector(".form__button-save");
 
 //функция 'Submit cardMestoForm'
-export function formSubmitCard(event) {
+export function submitFormCard(event) {
   event.preventDefault();
   const cardData = {
     name: nameInputCard.value,
@@ -33,7 +33,7 @@ export function formSubmitCard(event) {
 // общая функция для развещивания слушателей
 export function setCardMestoListeners() {
   // кнопки сохранения CardMesto
-  btnCardMestoSave.addEventListener("submit", formSubmitCard);
+  btnCardMestoSave.addEventListener("submit", submitFormCard);
 
   //добавляем слушатели для модального окна popupCardMesto
   btnCardMestoAdd.addEventListener("click", () => {

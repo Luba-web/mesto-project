@@ -21,36 +21,26 @@ const imgAvatar = document.querySelector(".profile__avatar");
 const savedAvatar = btnAvatarSave.querySelector(".form__button-save");
 
 export const user = { id: "" };
-//добавление карточек
-getAllCards().then((initialCards) => {
-  initialCards.forEach((item) => {
-    addCard(item);
-  })
-});
+//добавление карточек и информации пользователя
 
-//информация с сервера про пользователя
-getAllUser()
-  .then((res) => {
-    profileName.textContent = res.name;
-    profileJob.textContent = res.about;
-    imgAvatar.src = res.avatar;
-    avatarInput.value = res.avatar;
-    user.id = res._id;
-    nameInput.value = res.name;
-    jobInput.value = res.about;
-    user.likes = res._likes;
-  })
-  .catch((err) => console.log(err));
-
-
-Promise.all([getAllCards(), getAllUser])
-  .then((res) => {
-    return res;
+Promise.all([getAllCards(), getAllUser()])
+.then(([cards, userInfo]) => {
+    profileName.textContent = userInfo.name;
+    profileJob.textContent = userInfo.about;
+    imgAvatar.src = userInfo.avatar;
+    avatarInput.value = userInfo.avatar;
+    user.id = userInfo._id;
+    nameInput.value = userInfo.name;
+    jobInput.value = userInfo.about;
+    user.likes = userInfo._likes;
+    cards.forEach((item) => {
+      addCard(item);
     })
+  })
   .catch((err) => console.log(err));
 
 //функция 'Submit profileForm'
-function formSubmitProfile(event) {
+function submitFormProfile(event) {
   event.preventDefault();
   const dataProfile = {
     name: nameInput.value,
@@ -64,7 +54,6 @@ function formSubmitProfile(event) {
       closePopup(popupProfile);
     })
     .catch((err) => console.log(err))
-    .catch((err) => console.log(err))
     .finally(() => {
       changeBtnLoading(false, bntSavedProfile);
     });
@@ -73,7 +62,7 @@ function formSubmitProfile(event) {
 // общая функция для развещивания слушателей
 export function setProfileListeners() {
   // кнопки сохранения popupProfile и CardMesto
-  btnProfileSave.addEventListener("submit", formSubmitProfile);
+  btnProfileSave.addEventListener("submit", submitFormProfile);
 
   //добавляем слушатели для модального окна popupProfile
   btnPen.addEventListener("click", () => {
@@ -84,7 +73,7 @@ export function setProfileListeners() {
 }
 
 //функция 'Submit Аватара'
-function formSubmitAvatar(event) {
+function submitFormAvatar(event) {
   event.preventDefault();
   const dataAvatar = {
     avatar: avatarInput.value,
@@ -104,7 +93,7 @@ function formSubmitAvatar(event) {
 
 export function setAvatarListeners() {
   // кнопка сохранения avatar
-  btnAvatarSave.addEventListener("submit", formSubmitAvatar);
+  btnAvatarSave.addEventListener("submit", submitFormAvatar);
 
   //добавляем слушатели для модального окна avatar
   imgAvatar.addEventListener("click", () => {
