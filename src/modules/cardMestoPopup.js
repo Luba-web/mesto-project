@@ -1,6 +1,8 @@
 import { openPopup, closePopup, changeBtnLoading } from "../modules/modal";
 import { addCard } from "../modules/card";
 import { addCardServer } from "../modules/api";
+import { config } from "../utils/contstants";
+import { toggleButtonState } from "../modules/validate";
 
 const popupCardMesto = document.querySelector("#cardMesto");
 const cardEditMestoForm = document.forms["cardMestoForm"];
@@ -22,8 +24,9 @@ export function submitFormCard(event) {
     .then((cardData) => {
       addCard(cardData);
       closePopup(popupCardMesto);
-      bntSaved.classList.add("form__button-save_disabled");
+      //bntSaved.classList.add("form__button-save_disabled");
       cardEditMestoForm.reset();
+      toggleButtonState(bntSaved, false, config);
     })
     .catch((err) => console.log(err))
     .finally(() => {

@@ -1,6 +1,8 @@
 import { openPopup, closePopup, changeBtnLoading } from "../modules/modal";
 import { getAllCards, getAllUser, changeProfile, changeAvatar } from "../modules/api";
 import { addCard } from "../modules/card";
+import { config } from "../utils/contstants";
+import { toggleButtonState } from "../modules/validate";
 
 const popupProfile = document.querySelector("#profile");
 const btnProfileSave = document.querySelector("#profileForm");
@@ -83,7 +85,7 @@ function submitFormAvatar(event) {
     .then((dataAvatar) => {
       imgAvatar.src = dataAvatar.avatar;
       closePopup(popupAvatar);
-      savedAvatar.classList.add("form__button-save_disabled");
+      toggleButtonState(savedAvatar, false, config);
       avatarForm.reset();
     })
     .catch((err) => console.log(err))
