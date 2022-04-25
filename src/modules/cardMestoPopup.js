@@ -1,8 +1,8 @@
 import { openPopup, closePopup, changeBtnLoading } from "../modules/modal";
 import { addCard } from "../modules/card";
-import { addCardServer } from "../modules/api";
 import { config } from "../utils/contstants";
 import { toggleButtonState } from "../modules/validate";
+import { api } from "../modules/api";
 
 const popupCardMesto = document.querySelector("#cardMesto");
 const cardEditMestoForm = document.forms["cardMestoForm"];
@@ -20,7 +20,7 @@ export function submitFormCard(event) {
     link: linkInputCard.value,
   };
   changeBtnLoading(true, bntSaved);
-  addCardServer(cardData)
+  api.addCardServer(cardData)
     .then((cardData) => {
       addCard(cardData);
       closePopup(popupCardMesto);

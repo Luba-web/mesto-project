@@ -1,8 +1,11 @@
 import { openPopup, closePopup, changeBtnLoading } from "../modules/modal";
-import { getAllCards, getAllUser, changeProfile, changeAvatar } from "../modules/api";
 import { addCard } from "../modules/card";
 import { config } from "../utils/contstants";
 import { toggleButtonState } from "../modules/validate";
+import { api } from "../modules/api";
+import Card from "../modules/card";
+import { openPhoto } from "../modules/imagePopup";
+import { cardContainer } from "../utils/contstants";
 
 const popupProfile = document.querySelector("#profile");
 const btnProfileSave = document.querySelector("#profileForm");
@@ -25,7 +28,7 @@ const savedAvatar = btnAvatarSave.querySelector(".form__button-save");
 export const user = { id: "" };
 //добавление карточек и информации пользователя
 
-Promise.all([getAllCards(), getAllUser()])
+Promise.all([api.getAllCards(), api.getAllUser()])
 .then(([cards, userInfo]) => {
     profileName.textContent = userInfo.name;
     profileJob.textContent = userInfo.about;
@@ -37,6 +40,11 @@ Promise.all([getAllCards(), getAllUser()])
     user.likes = userInfo._likes;
     cards.forEach((item) => {
       addCard(item);
+      const card1 = new Card(item, "#cardTemplate", openPhoto);
+
+      cardContainer.prepend(card1.generate());
+ 
+      //console.log('card1.generate', card1.aktiveLike());
     })
   })
   .catch((err) => console.log(err));
@@ -49,7 +57,7 @@ function submitFormProfile(event) {
     about: jobInput.value,
   };
   changeBtnLoading(true, bntSavedProfile);
-  changeProfile(dataProfile)
+  api.changeProfile(dataProfile)
     .then(() => {
       profileName.textContent = dataProfile.name;
       profileJob.textContent = dataProfile.about;
@@ -81,7 +89,7 @@ function submitFormAvatar(event) {
     avatar: avatarInput.value,
   };
   changeBtnLoading(true, savedAvatar);
-  changeAvatar(dataAvatar)
+  api.changeAvatar(dataAvatar)
     .then((dataAvatar) => {
       imgAvatar.src = dataAvatar.avatar;
       closePopup(popupAvatar);

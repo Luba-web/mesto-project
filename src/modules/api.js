@@ -1,80 +1,93 @@
-//api
-// Токен: cb8f559f-5b92-4512-9828-0e4dd400de93
-// Идентификатор группы: plus-cohort-8
-const configApi = {
-  url: "https://mesto.nomoreparties.co/v1/plus-cohort-8/",
+export default class Api {
+  constructor(options) {
+    this._baseUrl = options.baseUrl;
+    this._headers = options.headers;
+    console.log(this._baseUrl);
+    console.log(this._headers);
+  }
+
+  //проверка на статус OK
+  _onResponce(responce) {
+    return responce.ok
+      ? responce.json()
+      : Promise.reject("Ошибка : " + responce);
+  }
+
+  //запрос профиля
+  getAllUser() {
+    console.log('hhhh');
+    return fetch(`${this._baseUrl}users/me`, { headers: this._headers }).then(
+      this._onResponce
+      
+    );
+  }
+
+  //запрос на изменение Profile
+  changeProfile(data) {
+    return fetch(`${this._baseUrl}users/me`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        name: data.name,
+        about: data.about,
+      }),
+    }).then(this._onResponce);
+  }
+
+  //запрос на изменение Avatar
+  changeAvatar(data) {
+    return fetch(`${this._baseUrl}users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({ avatar: data.avatar }),
+    }).then(this._onResponce);
+  }
+
+  //запрос по карточкам на сервер
+  getAllCards() {
+    return fetch(`${this._baseUrl}cards`, { headers: this._headers }).then(
+      this._onResponce
+    );
+  }
+
+  //запрос на добавление карточек
+  addCardServer(data) {
+    return fetch(`${this._baseUrl}cards`, {
+      method: "POST",
+      headers: this._headers,
+      body: JSON.stringify(data),
+    }).then(this._onResponce);
+  }
+
+  //запрос на удаление карточек
+  removeCardServer(dataId) {
+    return fetch(`${this._baseUrl}cards/${dataId._id}`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then(this._onResponce);
+  }
+
+  //запрос на изменение лайков на карточках
+  addLikeServer(dataId) {
+    return fetch(`${this._baseUrl}cards/likes/${dataId._id}`, {
+      method: "PUT",
+      headers: this._headers,
+    }).then(this._onResponce);
+  }
+
+  removeLikeServer(dataId) {
+    return fetch(`${this._baseUrl}cards/likes/${dataId._id}`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then(this._onResponce);
+  }
+}
+
+export const api = new Api ({
+  baseUrl: "https://mesto.nomoreparties.co/v1/plus-cohort-8/",
   headers: {
     "authorization": "cb8f559f-5b92-4512-9828-0e4dd400de93",
     "Content-Type": "application/json",
   },
-}
-
-//проверка на статус OK
-export const onResponce = (responce) => {
-  return responce.ok ? responce.json() : Promise.reject("Ошибка : " + responce);
-}
-
-//запрос профиля
-export function getAllUser() {
-  return fetch(`${configApi.url}users/me`, { headers: configApi.headers })
-  .then(onResponce);
-}
-
-//запрос на изменение Profile
-export function changeProfile(data) {
-  return fetch(`${configApi.url}users/me`, {
-    method: "PATCH",
-    headers: configApi.headers,
-    body: JSON.stringify({
-      name: data.name,
-      about: data.about,
-    }),
-  }).then(onResponce);
-}
-
-//запрос на изменение Avatar
-export function changeAvatar(data) {
-  return fetch(`${configApi.url}users/me/avatar`, {
-    method: "PATCH",
-    headers: configApi.headers,
-    body: JSON.stringify({ avatar: data.avatar }),
-  }).then(onResponce);
-}
-
-//запрос по карточкам на сервер
-export function getAllCards() {
-  return fetch(`${configApi.url}cards`, { headers: configApi.headers })
-  .then(onResponce);
-}
-
-//запрос на добавление карточек
-export function addCardServer(data) {
-  return fetch(`${configApi.url}cards`, {
-    method: "POST",
-    headers: configApi.headers,
-    body: JSON.stringify(data),
-  }).then(onResponce);
-}
-
-//запрос на удаление карточек
-export function removeCardServer(dataId) {
-  return fetch(`${configApi.url}cards/${dataId._id}`, {
-    method: "DELETE",
-    headers: configApi.headers,
-  }).then(onResponce);
-}
-
-//запрос на изменение лайков на карточках
-export function addLikeServer(dataId) {
-  return fetch(`${configApi.url}cards/likes/${dataId._id}`, {
-    method: "PUT",
-    headers: configApi.headers,
-  }).then(onResponce);
-}
-
-export function removeLikeServer(dataId) {
-  return fetch(`${configApi.url}cards/likes/${dataId._id}`, {
-    method: "DELETE",
-    headers: configApi.headers,
-  }).then(onResponce);
-}
+})
+api.getAllUser();
