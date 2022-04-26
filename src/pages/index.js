@@ -2,10 +2,13 @@ import "./index.css";
 import {
   setProfileListeners,
   setAvatarListeners,
-} from "../modules/profilePopup";
-import { setCardMestoListeners } from "../modules/cardMestoPopup";
-import { enableValidation } from "../modules/validate";
+  profileEditForm,
+} from "../components/profilePopup";
+import { setCardMestoListeners } from "../components/cardMestoPopup";
+import FormValidator from "../components/FormValidator";
 import { config } from "../utils/contstants";
+
+
 //import Api from "../modules/api";
 
 // export const api = new Api ({
@@ -16,6 +19,20 @@ import { config } from "../utils/contstants";
 //   },
 // })
 // api.getAllUser();
+
+//Валидация
+const formsPopup = {};
+function enableValidation(config) {
+  const forms = document.querySelectorAll(".form");
+  forms.forEach((form) => {
+    formsPopup[form.name] = form.name;
+    const formValidator = new FormValidator(config, form)
+    formValidator.enableValidation();
+  })
+}
+
+enableValidation(config);
+
 //профиль
 setProfileListeners();
 //автар
@@ -23,4 +40,4 @@ setAvatarListeners();
 //карточки
 setCardMestoListeners();
 //валидация
-enableValidation(config);
+//enableValidation(config);

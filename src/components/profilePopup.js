@@ -1,11 +1,12 @@
-import { openPopup, closePopup, changeBtnLoading } from "../modules/modal";
-import { addCard } from "../modules/card";
+import { openPopup, closePopup, changeBtnLoading } from "./modal";
+//import { addCard } from "./Card";
 import { config } from "../utils/contstants";
-import { toggleButtonState } from "../modules/validate";
-import { api } from "../modules/api";
-import Card from "../modules/card";
-import { openPhoto } from "../modules/imagePopup";
+import { toggleButtonState } from "./FormValidator";
+import { api } from "./Api";
+import Card from "./Card";
+import { openPhoto } from "./imagePopup";
 import { cardContainer } from "../utils/contstants";
+
 
 const popupProfile = document.querySelector("#profile");
 const btnProfileSave = document.querySelector("#profileForm");
@@ -13,9 +14,10 @@ const btnPen = document.querySelector(".profile__button-pen");
 const profileName = document.querySelector(".profile__title");
 const profileJob = document.querySelector(".profile__subtitle");
 
-const profileEditForm = document.forms["profileForm"];
+export const profileEditForm = document.forms["profileForm"];
 const nameInput = profileEditForm.elements.firstName;
 const jobInput = profileEditForm.elements.profession;
+
 const bntSavedProfile = btnProfileSave.querySelector(".form__button-save");
 
 const popupAvatar = document.querySelector("#avatar");
@@ -39,7 +41,7 @@ Promise.all([api.getAllCards(), api.getAllUser()])
     jobInput.value = userInfo.about;
     user.likes = userInfo._likes;
     cards.forEach((item) => {
-      addCard(item);
+     // addCard(item);
       const card1 = new Card(item, "#cardTemplate", openPhoto);
 
       cardContainer.prepend(card1.generate());
@@ -72,6 +74,7 @@ function submitFormProfile(event) {
 // общая функция для развещивания слушателей
 export function setProfileListeners() {
   // кнопки сохранения popupProfile и CardMesto
+
   btnProfileSave.addEventListener("submit", submitFormProfile);
 
   //добавляем слушатели для модального окна popupProfile
@@ -93,7 +96,7 @@ function submitFormAvatar(event) {
     .then((dataAvatar) => {
       imgAvatar.src = dataAvatar.avatar;
       closePopup(popupAvatar);
-      toggleButtonState(savedAvatar, false, config);
+    //  toggleButtonState(savedAvatar, false, config);
       avatarForm.reset();
     })
     .catch((err) => console.log(err))

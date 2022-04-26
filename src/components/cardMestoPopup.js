@@ -1,8 +1,10 @@
-import { openPopup, closePopup, changeBtnLoading } from "../modules/modal";
-import { addCard } from "../modules/card";
+import { openPopup, closePopup, changeBtnLoading } from "./modal";
+//import { addCard } from "./Card";
 import { config } from "../utils/contstants";
-import { toggleButtonState } from "../modules/validate";
-import { api } from "../modules/api";
+import { toggleButtonState } from "./FormValidator";
+import { api } from "./Api";
+import Card from "./Card";
+import { cardContainer } from "../utils/contstants";
 
 const popupCardMesto = document.querySelector("#cardMesto");
 const cardEditMestoForm = document.forms["cardMestoForm"];
@@ -21,12 +23,13 @@ export function submitFormCard(event) {
   };
   changeBtnLoading(true, bntSaved);
   api.addCardServer(cardData)
-    .then((cardData) => {
-      addCard(cardData);
+    .then((item) => {
+      const card1 = new Card(item, "#cardTemplate", openPhoto);//section уйдет, пока это костылики
+      cardContainer.prepend(card1.generate());//section уйдет, пока это костылики
+
       closePopup(popupCardMesto);
-      //bntSaved.classList.add("form__button-save_disabled");
       cardEditMestoForm.reset();
-      toggleButtonState(bntSaved, false, config);
+     // toggleButtonState(bntSaved, false, config);
     })
     .catch((err) => console.log(err))
     .finally(() => {

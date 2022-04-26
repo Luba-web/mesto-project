@@ -1,6 +1,7 @@
-import { api } from "../modules/api";
-import { user } from "../modules/profilePopup";
+import { api } from "./Api";
+import { user } from "./profilePopup";
 import { cardContainer } from "../utils/contstants";
+
 // //функция удаления карточки
 function deleteCard(event, cardNew) {
   api
@@ -100,7 +101,6 @@ export default class Card {
   }
 
   _getElement() {
-    console.log(this._cardTemlate);
     this._cardElement = this._cardTemlate.content
       .querySelector(".cards__item")
       .cloneNode(true);

@@ -2,8 +2,6 @@ export default class Api {
   constructor(options) {
     this._baseUrl = options.baseUrl;
     this._headers = options.headers;
-    console.log(this._baseUrl);
-    console.log(this._headers);
   }
 
   //проверка на статус OK
