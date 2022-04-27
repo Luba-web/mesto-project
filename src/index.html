@@ -34,7 +34,7 @@
     <footer class="footer">
       <p class="footer__autor">&copy; 2021. Любовь Васильева</p>
     </footer>
-    <div id="avatar" class="popup">
+    <div class="popup popup-avatar">
       <div class="popup__container">
         <button
           type="button"
@@ -61,7 +61,7 @@
         </form>
       </div>
     </div>
-    <div id="profile" class="popup">
+    <div class="popup popup-profile">
       <div class="popup__container">
         <button
           type="button"
@@ -100,7 +100,7 @@
         </form>
       </div>
     </div>
-    <div id="cardMesto" class="popup">
+    <div class="popup popup-cardMesto">
       <div class="popup__container">
         <button
           type="button"
@@ -138,7 +138,8 @@
         </form>
       </div>
     </div>
-    <div id="popupImages" class="popup popup__overlay">
+    <div class="popup popup-images popup__overlay">
+      <!--сделать отдлеьный бэм блок overlay-->
       <div class="popup__container popup__big">
         <button
           type="button"
@@ -151,9 +152,9 @@
     </div>
     <template id="cardTemplate">
       <li class="cards__item">
-        <img src="${linkCard}" alt="${nameCard}" class="cards__images" />
+        <img src="#" alt="" class="cards__images" />
         <div class="cards__info">
-          <h2 class="cards__text">${nameCard}</h2>
+          <h2 class="cards__text"></h2>
           <div class="cards__like-box">
             <button type="button" class="button cards__like"></button>
             <p class="cards__like-numbers">0</p>

@@ -1,14 +1,11 @@
-import { openPopup, closePopup, changeBtnLoading } from './modal';
-//import { addCard } from './Card';
-import { config } from '../utils/contstants';
-import { toggleButtonState } from './FormValidator';
+import { changeBtnLoading, popupTest } from './Popup';
 import { api } from './Api';
 import Card from './Card';
 import { openPhoto } from './imagePopup';
 import { cardContainer } from '../utils/contstants';
 
 
-const popupProfile = document.querySelector('#profile');
+const popupProfile = document.querySelector('.popup-profile');
 const btnProfileSave = document.querySelector('#profileForm');
 const btnPen = document.querySelector('.profile__button-pen');
 const profileName = document.querySelector('.profile__title');
@@ -20,7 +17,7 @@ const jobInput = profileEditForm.elements.profession;
 
 const bntSavedProfile = btnProfileSave.querySelector('.form__button-save');
 
-const popupAvatar = document.querySelector('#avatar');
+const popupAvatar = document.querySelector('.popup-avatar');
 const btnAvatarSave = document.querySelector('#avatarForm');
 const avatarForm = document.forms['avatarForm'];
 const avatarInput = avatarForm.elements.avatar;
@@ -63,7 +60,8 @@ function submitFormProfile(event) {
     .then(() => {
       profileName.textContent = dataProfile.name;
       profileJob.textContent = dataProfile.about;
-      closePopup(popupProfile);
+      // closePopup(popupProfile);
+      popupTest.closePopup();
     })
     .catch((err) => console.log(err))
     .finally(() => {
@@ -79,7 +77,8 @@ export function setProfileListeners() {
 
   //добавляем слушатели для модального окна popupProfile
   btnPen.addEventListener('click', () => {
-    openPopup(popupProfile);
+    // openPopup(popupProfile);
+    popupTest.openPopup();
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
   });

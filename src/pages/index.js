@@ -2,7 +2,6 @@ import './index.css';
 import {
   setProfileListeners,
   setAvatarListeners,
-  profileEditForm,
 } from '../components/profilePopup';
 import { setCardMestoListeners } from '../components/cardMestoPopup';
 import FormValidator from '../components/FormValidator';
@@ -39,5 +38,3 @@ setProfileListeners();
 setAvatarListeners();
 //карточки
 setCardMestoListeners();
-//валидация
-//enableValidation(config);

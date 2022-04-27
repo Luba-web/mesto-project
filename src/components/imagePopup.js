@@ -1,5 +1,5 @@
-import { openPopup } from './modal';
-const popupImages = document.querySelector('#popupImages');
+//import { openPopup } from './Popup';
+const popupImages = document.querySelector('.popup-images');
 const popupPhoto = document.querySelector('.popup__images');
 
 //функция открытия картинки/фото

@@ -1,12 +1,9 @@
-import { openPopup, closePopup, changeBtnLoading } from './modal';
-//import { addCard } from './Card';
-import { config } from '../utils/contstants';
-import { toggleButtonState } from './FormValidator';
+import { changeBtnLoading } from './Popup';
 import { api } from './Api';
 import Card from './Card';
 import { cardContainer } from '../utils/contstants';
 
-const popupCardMesto = document.querySelector('#cardMesto');
+const popupCardMesto = document.querySelector('.popup-cardMesto');
 const cardEditMestoForm = document.forms['cardMestoForm'];
 const nameInputCard = cardEditMestoForm.elements.nameImg;
 const linkInputCard = cardEditMestoForm.elements.linkImg;
