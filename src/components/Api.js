@@ -13,10 +13,9 @@ export default class Api {
 
   //запрос профиля
   getAllUser() {
-    console.log('hhhh');
     return fetch(`${this._baseUrl}users/me`, { headers: this._headers }).then(
       this._onResponce
-      
+
     );
   }
 
@@ -81,7 +80,7 @@ export default class Api {
   }
 }
 
-export const api = new Api ({
+export const api = new Api({
   baseUrl: "https://mesto.nomoreparties.co/v1/plus-cohort-8/",
   headers: {
     "authorization": "cb8f559f-5b92-4512-9828-0e4dd400de93",

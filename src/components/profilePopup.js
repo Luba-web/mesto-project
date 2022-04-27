@@ -1,37 +1,37 @@
-import { openPopup, closePopup, changeBtnLoading } from "./modal";
-//import { addCard } from "./Card";
-import { config } from "../utils/contstants";
-import { toggleButtonState } from "./FormValidator";
-import { api } from "./Api";
-import Card from "./Card";
-import { openPhoto } from "./imagePopup";
-import { cardContainer } from "../utils/contstants";
+import { openPopup, closePopup, changeBtnLoading } from './modal';
+//import { addCard } from './Card';
+import { config } from '../utils/contstants';
+import { toggleButtonState } from './FormValidator';
+import { api } from './Api';
+import Card from './Card';
+import { openPhoto } from './imagePopup';
+import { cardContainer } from '../utils/contstants';
 
 
-const popupProfile = document.querySelector("#profile");
-const btnProfileSave = document.querySelector("#profileForm");
-const btnPen = document.querySelector(".profile__button-pen");
-const profileName = document.querySelector(".profile__title");
-const profileJob = document.querySelector(".profile__subtitle");
+const popupProfile = document.querySelector('#profile');
+const btnProfileSave = document.querySelector('#profileForm');
+const btnPen = document.querySelector('.profile__button-pen');
+const profileName = document.querySelector('.profile__title');
+const profileJob = document.querySelector('.profile__subtitle');
 
-export const profileEditForm = document.forms["profileForm"];
+export const profileEditForm = document.forms['profileForm'];
 const nameInput = profileEditForm.elements.firstName;
 const jobInput = profileEditForm.elements.profession;
 
-const bntSavedProfile = btnProfileSave.querySelector(".form__button-save");
+const bntSavedProfile = btnProfileSave.querySelector('.form__button-save');
 
-const popupAvatar = document.querySelector("#avatar");
-const btnAvatarSave = document.querySelector("#avatarForm");
-const avatarForm = document.forms["avatarForm"];
+const popupAvatar = document.querySelector('#avatar');
+const btnAvatarSave = document.querySelector('#avatarForm');
+const avatarForm = document.forms['avatarForm'];
 const avatarInput = avatarForm.elements.avatar;
-const imgAvatar = document.querySelector(".profile__avatar");
-const savedAvatar = btnAvatarSave.querySelector(".form__button-save");
+const imgAvatar = document.querySelector('.profile__avatar');
+const savedAvatar = btnAvatarSave.querySelector('.form__button-save');
 
-export const user = { id: "" };
+export const user = { id: '' };
 //добавление карточек и информации пользователя
 
 Promise.all([api.getAllCards(), api.getAllUser()])
-.then(([cards, userInfo]) => {
+  .then(([cards, userInfo]) => {
     profileName.textContent = userInfo.name;
     profileJob.textContent = userInfo.about;
     imgAvatar.src = userInfo.avatar;
@@ -41,11 +41,11 @@ Promise.all([api.getAllCards(), api.getAllUser()])
     jobInput.value = userInfo.about;
     user.likes = userInfo._likes;
     cards.forEach((item) => {
-     // addCard(item);
-      const card1 = new Card(item, "#cardTemplate", openPhoto);
+      // addCard(item);
+      const card1 = new Card(item, '#cardTemplate', openPhoto);
 
       cardContainer.prepend(card1.generate());
- 
+
       //console.log('card1.generate', card1.aktiveLike());
     })
   })
@@ -75,10 +75,10 @@ function submitFormProfile(event) {
 export function setProfileListeners() {
   // кнопки сохранения popupProfile и CardMesto
 
-  btnProfileSave.addEventListener("submit", submitFormProfile);
+  btnProfileSave.addEventListener('submit', submitFormProfile);
 
   //добавляем слушатели для модального окна popupProfile
-  btnPen.addEventListener("click", () => {
+  btnPen.addEventListener('click', () => {
     openPopup(popupProfile);
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
@@ -96,7 +96,7 @@ function submitFormAvatar(event) {
     .then((dataAvatar) => {
       imgAvatar.src = dataAvatar.avatar;
       closePopup(popupAvatar);
-    //  toggleButtonState(savedAvatar, false, config);
+      //  toggleButtonState(savedAvatar, false, config);
       avatarForm.reset();
     })
     .catch((err) => console.log(err))
@@ -107,10 +107,10 @@ function submitFormAvatar(event) {
 
 export function setAvatarListeners() {
   // кнопка сохранения avatar
-  btnAvatarSave.addEventListener("submit", submitFormAvatar);
+  btnAvatarSave.addEventListener('submit', submitFormAvatar);
 
   //добавляем слушатели для модального окна avatar
-  imgAvatar.addEventListener("click", () => {
+  imgAvatar.addEventListener('click', () => {
     openPopup(popupAvatar);
   });
 }
