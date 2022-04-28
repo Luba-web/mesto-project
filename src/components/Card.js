@@ -1,7 +1,7 @@
-import { api } from './Api';
-import { user } from './profilePopup';
-import { cardContainer } from '../utils/contstants';
 
+import { user } from './PopupWithForm';
+import { cardContainer } from '../utils/contstants';
+import { api } from '../components/Api'
 // //функция удаления карточки
 function deleteCard(event, cardNew) {
   api

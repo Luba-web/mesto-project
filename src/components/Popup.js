@@ -1,19 +1,19 @@
 export default class Popup {
   constructor(selector) {
     this._selector = selector;
-    this._form = document.querySelector(this._selector);
+    this._container = document.querySelector(this._selector);
     this._handleEsс = this._handleEsс.bind(this);
   }
 
   //функция открытие модального окна и закрытия на esc
   openPopup() {
-    this._form.classList.add('popup_opened');
+    this._container.classList.add('popup_opened');
     document.addEventListener('keydown', this._handleEsс);
   }
 
   //функция закрытие модального окна
   closePopup() {
-    this._form.classList.remove('popup_opened');
+    this._container.classList.remove('popup_opened');
     document.removeEventListener('keydown', this._handleEsс);
   }
 
@@ -25,7 +25,8 @@ export default class Popup {
   }
 
   setEventListeners() {
-    this._form.addEventListener('click', (event) => {
+    this._container.addEventListener('click', (event) => {
+      console.log('fssss')
       if (
         event.target.classList.contains('popup') ||
         event.target.classList.contains('popup__button-close')
@@ -36,10 +37,10 @@ export default class Popup {
   }
 }
 
-export const popupTest = new Popup('.popup-profile');
-// popupTest.openPopup();
-// popupTest.closePopup();
-popupTest.setEventListeners();
+// export const popupTest = new PopupWithForm('.popup-profile');
+// // popupTest.openPopup();
+// // popupTest.closePopup();
+// popupTest.setEventListeners();
 
 // const page = document.querySelector('.page');
 

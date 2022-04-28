@@ -1,5 +1,5 @@
 import { changeBtnLoading } from './Popup';
-import { api } from './Api';
+import { api } from '../components/Api'
 import Card from './Card';
 import { cardContainer } from '../utils/contstants';
 
