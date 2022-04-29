@@ -4,12 +4,13 @@ import {
 } from '../components/PopupWithForm';
 import { setCardMestoListeners } from '../components/cardMestoPopup';
 import FormValidator from '../components/FormValidator';
-import { config } from '../utils/contstants';
+import { config, userConfig, cardContainer, inputConfig } from '../utils/contstants';
 import PopupWithForm from '../components/PopupWithForm';
 import { api } from '../components/Api'
 import { openPhoto } from '../components/imagePopup';
 import Card from '../components/Card';
-import { cardContainer } from '../utils/contstants';
+import UserInfo from '../components/UserInfo';
+
 // import Api from '../components/Api';
 
 // export const api = new Api({
@@ -46,43 +47,30 @@ const btnPen = document.querySelector('.profile__button-pen');
 
 export const user = { id: '' };
 
-export const popupTest = new PopupWithForm('.popup-profile', (data) => {
-  //changeBtnLoading(true, bntSavedProfile);
-  console.log('привет')
-  // const dataProfile = {
-  //   name: nameInput.value,
-  //   about: jobInput.value,
-
-  // };
+export const popupProfile = new PopupWithForm('.popup-profile', (data) => {
   return api.changeProfile(data)
     .then((res) => {
-      console.log('data', res)
-      console.log('data.name', res.name)
-      console.log('data.about', res.about)
       profileName.textContent = res.name;
       profileJob.textContent = res.about;
-      console.log(profileName)
-      console.log(profileJob)
-
     })
     .catch((err) => console.log(err))
     .finally(() => {
       console.log('finally')
-      // changeBtnLoading(false, bntSavedProfile);
+
     });
 });
 
-popupTest.setEventListeners();
+popupProfile.setEventListeners();
 console.log();
 
 enableValidation(config);
 
+
 //профиль
 btnPen.addEventListener('click', () => {
   // openPopup(popupProfile);
-  popupTest.openPopup();
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileJob.textContent;
+  popupProfile.openPopup();
+  userInfoData.getUserInfo(inputConfig);
 });
 
 //автар
@@ -90,17 +78,20 @@ setAvatarListeners();
 //карточки
 setCardMestoListeners();
 
+const userInfoData = new UserInfo(userConfig, () => {
+  return api.getAllUser()
+
+});
+console.log('userInfo', userInfoData);
+
 //получение данных сервера
 Promise.all([api.getAllCards(), api.getAllUser()])
   .then(([cards, userInfo]) => {
-    profileName.textContent = userInfo.name;
-    profileJob.textContent = userInfo.about;
-    imgAvatar.src = userInfo.avatar;//
-    avatarInput.value = userInfo.avatar;//
     user.id = userInfo._id;
-    nameInput.value = userInfo.name;
-    jobInput.value = userInfo.about;
-    user.likes = userInfo._likes;
+    // user.likes = userInfo._likes;
+
+    userInfoData.setUserInfo(userInfo.name, userInfo.about, userInfo.avatar);
+
     cards.forEach((item) => {
       // addCard(item);
       const card1 = new Card(item, '#cardTemplate', openPhoto);

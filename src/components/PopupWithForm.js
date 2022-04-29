@@ -1,10 +1,7 @@
 import { changeBtnLoading } from './Popup';
 import { api } from '../components/Api'
-// import Card from './Card';
-import { openPhoto } from './imagePopup';
-import { cardContainer } from '../utils/contstants';
 import Popup from './Popup';
-import { popupTest } from '../pages/index'
+
 
 
 const popupProfile = document.querySelector('.popup-profile');
@@ -125,7 +122,7 @@ export default class PopupWithForm extends Popup {
 
   _getInputValues() {
     this._inputList = this._form.querySelectorAll('.form__input');
-
+    //console.log('this._inputList', this._inputList)
     // создаём пустой объект
     this._formValues = {};
 
@@ -133,7 +130,7 @@ export default class PopupWithForm extends Popup {
     this._inputList.forEach(input => {
       this._formValues[input.name] = input.value;
     });
-
+    // console.log('this._formValues', this._formValues)
     // возвращаем объект значений
     return this._formValues;
   }
@@ -147,22 +144,24 @@ export default class PopupWithForm extends Popup {
     super.setEventListeners();
     this._buttonSubmit = this._form.querySelector('.form__button-save');
 
-    this.profileData = this._getInputValues();
+
 
     //нужно на форму повестить обработчик
     this._form.addEventListener('submit', (event) => {
       event.preventDefault();
+
       this._buttonSubmit.textContent = 'сохраниние...'
-      this._submitForm(this.profileData)
+
+      this._profileData = this._getInputValues();
+
+      this._submitForm(this._profileData)
         .then(() => {
           this.closePopup()
         })
         .finally(() => {
           this._buttonSubmit.textContent = 'сохранить'
-          //changeBtnLoading(false, savedAvatar);
         });
     })
-
   }
 
 }
