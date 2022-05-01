@@ -1,103 +1,13 @@
-
-import { user } from './PopupWithForm';
-import { cardContainer } from '../utils/contstants';
-import { api } from '../components/Api'
-// //функция удаления карточки
-function deleteCard(event, cardNew) {
-  api
-    .removeCardServer(cardNew)
-    .then(() => {
-      event.target.closest('.cards__item').remove();
-    })
-    .catch((err) => console.log(err));
-}
-
-//функция добавления карточек пользователем
-function renderCard(cardNew) {
-  const cardTemlate = document.querySelector('#cardTemplate').content;
-  const cardElement = cardTemlate.querySelector('.cards__item').cloneNode(true);
-  const imageCard = cardElement.querySelector('.cards__images');
-  const nameCard = cardElement.querySelector('.cards__text');
-  const btnDelete = cardElement.querySelector('.cards__button-delete');
-  const likeNumbers = cardElement.querySelector('.cards__like-numbers');
-  const btnLike = cardElement.querySelector('.cards__like');
-  nameCard.textContent = cardNew.name;
-  imageCard.src = cardNew.link;
-  imageCard.alt = cardNew.name;
-  likeNumbers.textContent = cardNew.likes.length;
-
-  if (aktiveLike(cardNew)) {
-    btnLike.classList.add('cards__like_active');
-  }
-
-  if (cardNew.owner._id !== user.id) {
-    btnDelete.style.display = 'none';
-  }
-
-  //слушатель лайка
-  btnLike.addEventListener('click', (event) => {
-    handleBtnLike(event, likeNumbers, cardNew);
-  });
-  //слушатель на кнопку урны
-  btnDelete.addEventListener('click', (event) => {
-    deleteCard(event, cardNew);
-  });
-  //слушатель нажатия на картинку
-  imageCard.addEventListener('click', () => {
-    openPhoto(cardNew);
-  });
-
-  return cardElement;
-}
-//функция активности значка лайка
-function aktiveLike(cardNew) {
-  return cardNew.likes.find((like) => like._id === user.id) ? true : false;
-}
-
-//функция подсчета лайков
-function handleBtnLike(event, likeNumbersElement, cardNew) {
-  if (aktiveLike(cardNew)) {
-    api
-      .removeLikeServer(cardNew)
-      .then((res) => {
-        likeNumbersElement.textContent = res.likes.length;
-        event.target.classList.remove('cards__like_active');
-        cardNew.likes = res.likes;
-      })
-      .catch((err) => console.log(err));
-  } else {
-    api
-      .addLikeServer(cardNew)
-      .then((res) => {
-        likeNumbersElement.textContent = res.likes.length;
-        event.target.classList.add('cards__like_active');
-        cardNew.likes = res.likes;
-      })
-      .catch((err) => console.log(err));
-  }
-}
-
-// функция добавление карточек
-export function addCard(cardNew) {
-  // перееедет в setion
-  api
-    .getAllCards()
-    .then(() => {
-      cardContainer.prepend(renderCard(cardNew));
-    })
-    .catch((err) => console.log(err));
-}
-
-// function aktiveLike(cardNew) {
-//   return cardNew.likes.find((like) => like._id === user.id) ? true : false;
-// }
-
 export default class Card {
-  constructor(cardItem, selectorTemplate, openPhoto) {
+  constructor(cardItem, selectorTemplate, { user }, { handleCardClick, deleteCardApi, addLike, deleteLike }) {
     this._selector = selectorTemplate;
     this._cardItem = cardItem; //заменила cardNew
     this._cardTemlate = document.querySelector(this._selector);
-    this._openPhoto = openPhoto;
+    this._user = user;
+    this._handleCardClick = handleCardClick;
+    this._deleteCardApi = deleteCardApi;
+    this._addLike = addLike;
+    this._deleteLike = deleteLike;
   }
 
   _getElement() {
@@ -109,8 +19,7 @@ export default class Card {
 
   //удаления карточки
   _deleteCard(event) {
-    api
-      .removeCardServer(this._cardItem)
+    this._deleteCardApi(this._cardItem)
       .then(() => {
         event.target.closest('.cards__item').remove();
       })
@@ -120,8 +29,7 @@ export default class Card {
   //подсчет лайков
   _handleBtnLike(event) {
     if (this._aktiveLike()) {
-      api
-        .removeLikeServer(this._cardItem)
+      this._deleteLike(this._cardItem)
         .then((res) => {
           this._likeNumbers.textContent = res.likes.length;
           event.target.classList.remove('cards__like_active');
@@ -129,8 +37,7 @@ export default class Card {
         })
         .catch((err) => console.log(err));
     } else {
-      api
-        .addLikeServer(this._cardItem)
+      this._addLike(this._cardItem)
         .then((res) => {
           this._likeNumbers.textContent = res.likes.length;
           event.target.classList.add('cards__like_active');
@@ -141,7 +48,7 @@ export default class Card {
   }
 
   _aktiveLike() {
-    return this._cardItem.likes.find((like) => like._id === user.id) ? true : false;
+    return this._cardItem.likes.find((like) => like._id === this._user.id) ? true : false;
   }
 
   _setEventListeners() {
@@ -155,7 +62,7 @@ export default class Card {
     });
     //слушатель нажатия на картинку
     this._imageCard.addEventListener('click', () => {
-      this._openPhoto(this._cardItem); // нужно потом заменить на уневерсальное без аргумент
+      this._handleCardClick(this._cardItem); // нужно потом заменить на уневерсальное без аргумент
     });
   }
 
@@ -175,16 +82,13 @@ export default class Card {
     this._imageCard.alt = this._cardItem.name;
     this._likeNumbers.textContent = this._cardItem.likes.length;
 
-
-
     if (this._aktiveLike()) {
       this._btnLike.classList.add('cards__like_active');
     }
 
-    if (this._cardItem.owner._id !== user.id) {
+    if (this._cardItem.owner._id !== this._user.id) {
       this._btnDelete.style.display = 'none';
     }
-
 
     return this._element;
   }

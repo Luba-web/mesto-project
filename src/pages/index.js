@@ -1,104 +1,138 @@
 import './index.css';
-import {
-  setAvatarListeners,
-} from '../components/PopupWithForm';
-import { setCardMestoListeners } from '../components/cardMestoPopup';
+import { btnImgAvatar, btnPen, btnCardMestoAdd, user, validateConfig, userConfig, inputConfig } from '../utils/contstants';
 import FormValidator from '../components/FormValidator';
-import { config, userConfig, cardContainer, inputConfig } from '../utils/contstants';
 import PopupWithForm from '../components/PopupWithForm';
-import { api } from '../components/Api'
-import { openPhoto } from '../components/imagePopup';
+import Api from '../components/Api';
+import PopupWithImage from '../components/PopupWithImage';
 import Card from '../components/Card';
 import UserInfo from '../components/UserInfo';
+import Section from '../components/Section';
 
-// import Api from '../components/Api';
-
-// export const api = new Api({
-//   baseUrl: 'https://mesto.nomoreparties.co/v1/plus-cohort-8/',
-//   headers: {
-//     'authorization': 'cb8f559f-5b92-4512-9828-0e4dd400de93',
-//     'Content-Type': 'application/json',
-//   },
-// })
+//Экземпляр класса api c токеном 
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/plus-cohort-8/',
+  headers: {
+    'authorization': 'cb8f559f-5b92-4512-9828-0e4dd400de93',
+    'Content-Type': 'application/json',
+  },
+})
 
 //Валидация
 const formsPopup = {};
 function enableValidation(config) {
   const forms = document.querySelectorAll('.form');
-  forms.forEach((form) => {
-    formsPopup[form.name] = form.name;
-    const formValidator = new FormValidator(config, form)
-    formValidator.enableValidation();
+  [...forms].forEach((form) => {
+
+    // formsPopup[form.name] = form.name;
+    const formValidity = new FormValidator(config, form)
+    const name = form.getAttribute('name');
+    formsPopup[name] = formValidity;
+    // formsPopup[form.name] = formValidity - почему не сработала, не вывела имя profile?
+    formValidity.enableValidation();
   })
 }
 
-const profileName = document.querySelector('.profile__title');
-const profileJob = document.querySelector('.profile__subtitle');
-const profileEditForm = document.forms['profileForm'];
-const nameInput = profileEditForm.elements.name;
-const jobInput = profileEditForm.elements.about;
-const popupAvatar = document.querySelector('.popup-avatar');
-const btnAvatarSave = document.querySelector('#avatarForm');
-const avatarForm = document.forms['avatarForm'];
-const avatarInput = avatarForm.elements.avatar;
-const imgAvatar = document.querySelector('.profile__avatar');
-const savedAvatar = btnAvatarSave.querySelector('.form__button-save');
-const btnPen = document.querySelector('.profile__button-pen');
-
-export const user = { id: '' };
-
-export const popupProfile = new PopupWithForm('.popup-profile', (data) => {
+const popupProfile = new PopupWithForm('.popup-profile', (data) => {
   return api.changeProfile(data)
     .then((res) => {
-      profileName.textContent = res.name;
-      profileJob.textContent = res.about;
+      userInfoData.setUserInfo(res)
     })
     .catch((err) => console.log(err))
-    .finally(() => {
-      console.log('finally')
-
-    });
 });
+
+const popupCardMesto = new PopupWithForm('.popup-cardMesto', (data) => {
+  const cardData = {
+    name: data.nameImg,
+    link: data.linkImg,
+  };
+  return api.addCardServer(cardData)
+    .then((res) => {
+      cardSection.renderItems([res]);
+    })
+    .catch((err) => console.log(err))
+})
+
+const popupAvatar = new PopupWithForm('.popup-avatar', (data) => {
+  const dataAvatar = {
+    avatar: data.avatar,
+  };
+  return api.changeAvatar(dataAvatar)
+    .then((res) => {
+      userInfoData.setUserInfo(res)
+    })
+})
+
+const popupPhoto = new PopupWithImage('.popup-images')
+
 
 popupProfile.setEventListeners();
-console.log();
 
-enableValidation(config);
+popupCardMesto.setEventListeners();
+
+popupAvatar.setEventListeners();
+
+popupPhoto.setEventListeners();
+
+enableValidation(validateConfig);
 
 
-//профиль
+//кнопки 
 btnPen.addEventListener('click', () => {
-  // openPopup(popupProfile);
+  formsPopup['profileForm'].resetValidation();
   popupProfile.openPopup();
   userInfoData.getUserInfo(inputConfig);
+
 });
 
-//автар
-setAvatarListeners();
-//карточки
-setCardMestoListeners();
+btnCardMestoAdd.addEventListener('click', () => {
+  formsPopup['cardMestoForm'].resetValidation();
+  popupCardMesto.openPopup();
+
+});
+
+btnImgAvatar.addEventListener('click', () => {
+  formsPopup['avatarForm'].resetValidation();
+  popupAvatar.openPopup();
+});
 
 const userInfoData = new UserInfo(userConfig, () => {
   return api.getAllUser()
 
 });
-console.log('userInfo', userInfoData);
+
+function renderer(item) {
+  const card = new Card(item, '#cardTemplate', { user },
+    {
+      handleCardClick: (item) => {
+        popupPhoto.openPopup(item);
+      },
+      deleteCardApi: (cardItem) => {
+        return api.removeCardServer(cardItem)
+      },
+      addLike: (cardItem) => {
+        return api.addLikeServer(cardItem)
+      },
+      deleteLike: (cardItem) => {
+        return api.removeLikeServer(cardItem)
+      },
+    }
+  );
+  const cardElement = card.generate();
+
+  return cardElement;
+}
+
+const cardSection = new Section(renderer, '.cards');
 
 //получение данных сервера
 Promise.all([api.getAllCards(), api.getAllUser()])
   .then(([cards, userInfo]) => {
-    user.id = userInfo._id;
-    // user.likes = userInfo._likes;
 
-    userInfoData.setUserInfo(userInfo.name, userInfo.about, userInfo.avatar);
+    user.id = userInfo._id;// как можно передать id для создание карточек без дополнительного объекта?
 
-    cards.forEach((item) => {
-      // addCard(item);
-      const card1 = new Card(item, '#cardTemplate', openPhoto);
+    userInfoData.setUserInfo(userInfo);
 
-      cardContainer.prepend(card1.generate());
+    cardSection.renderItems(cards);
 
-      //console.log('card1.generate', card1.aktiveLike());
-    })
   })
   .catch((err) => console.log(err));

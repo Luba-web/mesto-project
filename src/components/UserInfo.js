@@ -15,12 +15,10 @@ export default class UserInfo {
       .catch((err) => console.log(err));
   }
 
-  setUserInfo(name, about, avatar) { // {} взять в объект и сделать =>
-    this._nameUser.textContent = name;
-    this._aboutUser.textContent = about;
-    this._avatarUser.src = avatar;
-
+  setUserInfo(objUserInfo) {
+    this._nameUser.textContent = objUserInfo.name;
+    this._aboutUser.textContent = objUserInfo.about;
+    this._avatarUser.src = objUserInfo.avatar;
   }
-
 
 }

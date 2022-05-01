@@ -20,7 +20,7 @@ export default class FormValidator {
       `#${inputElement.id}-error`
     );
     inputElement.classList.remove(this._config.inputErrorClass);
-    this._errorElement.textContent = inputElement.validationMessage;
+    this._errorElement.textContent = '';
 
   }
 
