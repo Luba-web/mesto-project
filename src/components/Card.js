@@ -1,11 +1,11 @@
 export default class Card {
-  constructor(cardItem, selectorTemplate, { user }, { handleCardClick, deleteCardApi, addLike, deleteLike }) {
+  constructor(cardItem, selectorTemplate, { user }, { handleCardClick, handelDeleteCard, addLike, deleteLike }) {
     this._selector = selectorTemplate;
     this._cardItem = cardItem; //заменила cardNew
     this._cardTemlate = document.querySelector(this._selector);
     this._user = user;
     this._handleCardClick = handleCardClick;
-    this._deleteCardApi = deleteCardApi;
+    this._handelDeleteCard = handelDeleteCard;
     this._addLike = addLike;
     this._deleteLike = deleteLike;
   }
@@ -15,15 +15,6 @@ export default class Card {
       .querySelector('.cards__item')
       .cloneNode(true);
     return this._cardElement;
-  }
-
-  //удаления карточки
-  _deleteCard(event) {
-    this._deleteCardApi(this._cardItem)
-      .then(() => {
-        event.target.closest('.cards__item').remove();
-      })
-      .catch((err) => console.log(err));
   }
 
   //подсчет лайков
@@ -57,8 +48,9 @@ export default class Card {
       this._handleBtnLike(event);
     });
     //слушатель на кнопку урны
-    this._btnDelete.addEventListener('click', (event) => {
-      this._deleteCard(event);
+    this._btnDelete.addEventListener('click', () => {
+      //функция открытия модального окна и передача карты и елемета дома
+      this._handelDeleteCard(this._cardItem, this._element);
     });
     //слушатель нажатия на картинку
     this._imageCard.addEventListener('click', () => {

@@ -11,6 +11,7 @@
     <header class="header">
       <div class="logo logo_theme_white"></div>
     </header>
+
     <main>
       <section class="profile">
         <div class="profile__overlay">
@@ -31,9 +32,11 @@
         <ul class="cards"></ul>
       </section>
     </main>
+
     <footer class="footer">
       <p class="footer__autor">&copy; 2021. Любовь Васильева</p>
     </footer>
+
     <div class="popup popup-avatar">
       <div class="popup__container">
         <button
@@ -61,6 +64,7 @@
         </form>
       </div>
     </div>
+
     <div class="popup popup-profile">
       <div class="popup__container">
         <button
@@ -98,6 +102,7 @@
         </form>
       </div>
     </div>
+
     <div class="popup popup-cardMesto">
       <div class="popup__container">
         <button
@@ -136,6 +141,7 @@
         </form>
       </div>
     </div>
+
     <div class="popup popup-images popup__overlay">
       <!--сделать отдлеьный бэм блок overlay-->
       <div class="popup__container popup__big">
@@ -148,6 +154,21 @@
         <h2 class="popup__caption">Имя картинки</h2>
       </div>
     </div>
+
+    <div class="popup popup-delete">
+      <div class="popup__container">
+        <button
+          type="button"
+          aria-label="закрыть всплывающее окно"
+          class="button popup__button-close"
+        ></button>
+        <h2 class="popup__title">Вы уверены ?</h2>
+        <form name="deleteForm" class="form">
+          <button type="submit" class="button form__button-save">Да</button>
+        </form>
+      </div>
+    </div>
+
     <template id="cardTemplate">
       <li class="cards__item">
         <img src="#" alt="" class="cards__images" />

@@ -1,8 +1,9 @@
 import './index.css';
 import { btnImgAvatar, btnPen, btnCardMestoAdd, user, validateConfig, userConfig, inputConfig } from '../utils/contstants';
-import FormValidator from '../components/FormValidator';
-import PopupWithForm from '../components/PopupWithForm';
 import Api from '../components/Api';
+import FormValidator from '../components/FormValidator';
+import PopupWithDelete from '../components/PopupWithDelete';
+import PopupWithForm from '../components/PopupWithForm';
 import PopupWithImage from '../components/PopupWithImage';
 import Card from '../components/Card';
 import UserInfo from '../components/UserInfo';
@@ -64,6 +65,15 @@ const popupAvatar = new PopupWithForm('.popup-avatar', (data) => {
 
 const popupPhoto = new PopupWithImage('.popup-images')
 
+const popupDelete = new PopupWithDelete('.popup-delete', {
+  handleSubmitDelete: (cardItem, element) => {
+    return api.removeCardServer(cardItem)
+      .then(() => {
+        element.remove();
+        element = '';
+      })
+  }
+})
 
 popupProfile.setEventListeners();
 
@@ -73,8 +83,9 @@ popupAvatar.setEventListeners();
 
 popupPhoto.setEventListeners();
 
-enableValidation(validateConfig);
+popupDelete.setEventListeners();
 
+enableValidation(validateConfig);
 
 //кнопки 
 btnPen.addEventListener('click', () => {
@@ -93,6 +104,7 @@ btnCardMestoAdd.addEventListener('click', () => {
 btnImgAvatar.addEventListener('click', () => {
   formsPopup['avatarForm'].resetValidation();
   popupAvatar.openPopup();
+
 });
 
 const userInfoData = new UserInfo(userConfig, () => {
@@ -106,16 +118,19 @@ function renderer(item) {
       handleCardClick: (item) => {
         popupPhoto.openPopup(item);
       },
-      deleteCardApi: (cardItem) => {
-        return api.removeCardServer(cardItem)
+
+      handelDeleteCard: (cardItem, element) => {
+        popupDelete.openPopup();
+        popupDelete.getCard(cardItem, element);
       },
+
       addLike: (cardItem) => {
         return api.addLikeServer(cardItem)
       },
       deleteLike: (cardItem) => {
         return api.removeLikeServer(cardItem)
       },
-    }
+    },
   );
   const cardElement = card.generate();
 
@@ -128,11 +143,11 @@ const cardSection = new Section(renderer, '.cards');
 Promise.all([api.getAllCards(), api.getAllUser()])
   .then(([cards, userInfo]) => {
 
-    user.id = userInfo._id;// как можно передать id для создание карточек без дополнительного объекта?
+    user.id = userInfo._id;
 
     userInfoData.setUserInfo(userInfo);
 
     cardSection.renderItems(cards);
-
   })
+
   .catch((err) => console.log(err));

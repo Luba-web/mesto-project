@@ -10,3 +10,7 @@
 .form__input:first-of-type {
   margin-top: 0;
 }
+
+.form__input:last-of-type {
+  margin-bottom: 48px;
+}
