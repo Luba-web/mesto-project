@@ -11,14 +11,15 @@
     <header class="header">
       <div class="logo logo_theme_white"></div>
     </header>
+
     <main>
       <section class="profile">
         <div class="profile__overlay">
           <img class="profile__avatar" src="#" alt="аватар" />
         </div>
         <div class="profile__info">
-          <h1 class="profile__title">Жак-Ив Кусто</h1>
-          <p class="profile__subtitle">Исследователь океана</p>
+          <h1 class="profile__title"></h1>
+          <p class="profile__subtitle"></p>
           <button type="button" class="button profile__button-pen"></button>
         </div>
         <button
@@ -31,10 +32,12 @@
         <ul class="cards"></ul>
       </section>
     </main>
+
     <footer class="footer">
       <p class="footer__autor">&copy; 2021. Любовь Васильева</p>
     </footer>
-    <div id="avatar" class="popup">
+
+    <div class="popup popup-avatar">
       <div class="popup__container">
         <button
           type="button"
@@ -61,7 +64,8 @@
         </form>
       </div>
     </div>
-    <div id="profile" class="popup">
+
+    <div class="popup popup-profile">
       <div class="popup__container">
         <button
           type="button"
@@ -72,9 +76,8 @@
         <form name="profileForm" class="form" id="profileForm" novalidate>
           <input
             type="text"
-            name="firstName"
+            name="name"
             id="firstName"
-            value="Жак-Ив Кусто"
             placeholder="Имя"
             class="form__input form__input_name_first-name"
             required
@@ -84,9 +87,8 @@
           <span id="firstName-error" class="error"></span>
           <input
             type="text"
-            name="profession"
+            name="about"
             id="profession"
-            value="Исследователь океана"
             placeholder="Профессия"
             class="form__input form__input_name_profession"
             required
@@ -100,7 +102,8 @@
         </form>
       </div>
     </div>
-    <div id="cardMesto" class="popup">
+
+    <div class="popup popup-cardMesto">
       <div class="popup__container">
         <button
           type="button"
@@ -138,7 +141,9 @@
         </form>
       </div>
     </div>
-    <div id="popupImages" class="popup popup__overlay">
+
+    <div class="popup popup-images popup__overlay">
+      <!--сделать отдлеьный бэм блок overlay-->
       <div class="popup__container popup__big">
         <button
           type="button"
@@ -149,11 +154,26 @@
         <h2 class="popup__caption">Имя картинки</h2>
       </div>
     </div>
+
+    <div class="popup popup-delete">
+      <div class="popup__container">
+        <button
+          type="button"
+          aria-label="закрыть всплывающее окно"
+          class="button popup__button-close"
+        ></button>
+        <h2 class="popup__title">Вы уверены ?</h2>
+        <form name="deleteForm" class="form">
+          <button type="submit" class="button form__button-save">Да</button>
+        </form>
+      </div>
+    </div>
+
     <template id="cardTemplate">
       <li class="cards__item">
-        <img src="${linkCard}" alt="${nameCard}" class="cards__images" />
+        <img src="#" alt="" class="cards__images" />
         <div class="cards__info">
-          <h2 class="cards__text">${nameCard}</h2>
+          <h2 class="cards__text"></h2>
           <div class="cards__like-box">
             <button type="button" class="button cards__like"></button>
             <p class="cards__like-numbers">0</p>
